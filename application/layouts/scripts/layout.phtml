@@ -1,0 +1,29 @@
+<?php echo $this->docType() ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <?php
+            echo $this->headMeta();
+            echo $this->headTitle();
+            echo $this->headLink();
+            echo $this->headStyle();
+            echo $this->headScript();
+        ?>
+    </head>
+    
+    <body>
+        <div id="master">
+            <div id="header">
+                <div id="topheader"></div>
+                <div id="midheader"></div>
+                <div id="botheader"></div>
+            </div>
+            <div id="middle" class="rounded">
+
+<?php echo $this->layout()->content; ?>
+
+            </div>
+            <div id="footer"></div>
+        </div>
+        <?php echo $this->googleTracker('UA-352655-8') ?>
+    </body>
+</html>
