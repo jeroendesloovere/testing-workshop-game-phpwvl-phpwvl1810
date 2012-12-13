@@ -14,6 +14,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->headTitle()->setSeparator(' | ');
         $view->headLink()->appendStylesheet($view->baseUrl('/style/main.css'));
         $view->headLink()->appendStylesheet($view->baseUrl('/jquery/css/redmond/jquery-ui-1.8.21.custom.css'));
+        $view->headLink()->appendStylesheet('http://fonts.googleapis.com/css?family=Exo');
         $view->headScript()->appendFile($view->baseUrl('/jquery/js/jquery-1.7.2.min.js'));
         $view->headScript()->appendFile($view->baseUrl('/jquery/js/jquery-ui-1.8.21.custom.min.js'));
         

@@ -19,7 +19,13 @@
           <layoutScriptFile layoutName="layout"/>
         </layoutScriptsDirectory>
       </layoutsDirectory>
-      <modelsDirectory/>
+      <modelsDirectory>
+        <dbTableDirectory>
+          <dbTableFile dbTableName="Account"/>
+        </dbTableDirectory>
+        <modelFile modelName="Account"/>
+        <modelFile modelName="AccountMapper"/>
+      </modelsDirectory>
       <modulesDirectory>
         <moduleDirectory moduleName="auth">
           <apisDirectory enabled="false"/>

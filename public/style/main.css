@@ -3,17 +3,20 @@
     padding: 0; 
 }
 body { 
-    font-family: Arial, Helvetica, Sans-serif; 
-    text-align: center; 
-    background: lightblue; 
-    color: white; 
+    font-family: 'Exo', sans-serif;; 
+    text-align: center;
+    background: white;
+    color: black;
 }
 img { 
     border: 0; 
 }
+/** link settings **/
 a { 
     text-decoration: none; 
+    color: black; 
 }
+a:hover { color: black; }
 
 /** general classes **/
 .rounded { 
@@ -48,10 +51,19 @@ a {
 
 /** general design components **/
 #master { width: 1000px; margin: 0 auto; text-align: left; }
-#header { height: 50px; }
-#middle { border: 1px solid darkblue; min-height: 450px; }
+#header { height: 50px; margin-top: 20px; }
+
+#middle { border: 1px solid black; min-height: 450px; }
 #footer { }
 
-/** link settings **/
-a.nav { color: white; }
-a.nav:hover { color: lightblue; }
+
+
+div#logo { font-size: xx-large; width: 250px; float: left;}
+div#logo a { color: black; }
+div#logo a:hover { color: black; }
+
+div#topnav { width: 220px; float: right; text-align: right; }
+div#topnav div.navblock { width: 80px; height: 30px; text-align: center; float: right; border: 1px solid black; margin-left: 5px; }
+div#topnav a { display: block; margin-top: 5px; }
+
+div.content { padding: 15px; }

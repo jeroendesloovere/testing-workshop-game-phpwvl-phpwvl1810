@@ -100,16 +100,3 @@ class Auth_IndexController extends Zend_Controller_Action
         return $form;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

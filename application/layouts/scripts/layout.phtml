@@ -13,14 +13,31 @@
     <body>
         <div id="master">
             <div id="header">
-                <div id="topheader"></div>
+                <div id="topheader">
+                    <div id="logo"><a href="<?php echo $this->baseUrl('/') ?>" title="TheiaLive, track your relations"><strong>Theia</strong><i>live</i></a></div>
+                    <div id="topnav">
+                        <div class="navblock"><a href="<?php echo $this->url(array (
+                            'module' => 'default', 
+                            'controller' => 'account', 
+                            'action' => 'login'
+                        ), null, true) ?>"><?php echo $this->translate('login') ?></a></div>
+                        
+                        <div class="navblock"><a href="<?php echo $this->url(array (
+                            'module' => 'default', 
+                            'controller' => 'account', 
+                            'action' => 'register'
+                        ), null, true) ?>"><?php echo $this->translate('sign up') ?></a></div>
+                    </div>
+                </div>
                 <div id="midheader"></div>
                 <div id="botheader"></div>
             </div>
-            <div id="middle" class="rounded">
+            <div id="middle" class="">
+                <div class="content">
 
 <?php echo $this->layout()->content; ?>
 
+                </div>
             </div>
             <div id="footer"></div>
         </div>
