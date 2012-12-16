@@ -62,7 +62,7 @@ div#logo { font-size: xx-large; width: 250px; float: left;}
 div#logo a { color: black; }
 div#logo a:hover { color: black; }
 
-div#topnav { width: 220px; float: right; text-align: right; }
+div#topnav { width: 320px; float: right; text-align: right; }
 div#topnav div.navblock { width: 80px; height: 30px; text-align: center; float: right; border: 1px solid black; margin-left: 5px; }
 div#topnav a { display: block; margin-top: 5px; }
 

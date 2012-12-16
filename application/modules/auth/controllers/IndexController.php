@@ -16,7 +16,10 @@ class Auth_IndexController extends Zend_Controller_Action
             $form = unserialize($this->_session->loginForm);
             unset ($this->_session->loginForm);
         }
-        $this->view->assign(array ('form' => $form));
+        $this->view->assign(array (
+            'warning' => $this->_helper->flashMessenger->getMessages(),
+            'form' => $form,
+        ));
     }
 
     public function loginAction()
@@ -24,16 +27,40 @@ class Auth_IndexController extends Zend_Controller_Action
         if (!$this->getRequest()->isPost()) {
             return $this->_helper->redirector('index', 'index', 'auth');
         }
+        
         $form = $this->_getForm('login');
         if (!$form->isValid($this->getRequest()->getPost())) {
             $this->_session->loginForm = serialize($form);
             return $this->_helper->redirector('index', 'index', 'auth');
         }
+        
+        $values = $form->getValues();
+        
+        $auth = Zend_Auth::getInstance();
+        $authAdapter = new Application_Model_Auth($values['email'], $values['password']);
+        
+        $bootstrap = $this->getInvokeArg('bootstrap');
+        $bootstrap->bootstrap('db');
+        $dbAdapter = $bootstrap->getResource('db');
+        
+        $authAdapter->setDbAdapter($dbAdapter);
+        $result = $auth->authenticate($authAdapter);
+        
+        if (!$result->isValid()) {
+            $this->_helper->flashMessenger->addMessage('Invalid username and/or password');
+            $this->_session->loginForm = serialize($form);
+            return $this->_helper->redirector('index', 'index', 'auth');
+        }
+        $storage = $auth->getStorage();
+        $storage->write(new Application_Model_Account($authAdapter->getResultRowObject()));
+        
+        return $this->_helper->redirector('index', 'index', 'default');
     }
 
     public function logoutAction()
     {
-        // action body
+        Zend_Auth::getInstance()->clearIdentity();
+        return $this->_helper->redirector('index', 'index', 'default');
     }
 
     public function signupAction()
@@ -56,6 +83,10 @@ class Auth_IndexController extends Zend_Controller_Action
             $this->_session->registerForm = serialize($form);
             return $this->_helper->redirector('signup', 'index', 'auth');
         }
+        $data = $form->getValues();
+
+        $service = new Auth_Service_Account();
+        $result = $service->registerNewAccount($data);
     }
 
     public function forgotAction()

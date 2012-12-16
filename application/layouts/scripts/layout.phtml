@@ -16,17 +16,7 @@
                 <div id="topheader">
                     <div id="logo"><a href="<?php echo $this->baseUrl('/') ?>" title="TheiaLive, track your relations"><strong>Theia</strong><i>live</i></a></div>
                     <div id="topnav">
-                        <div class="navblock"><a href="<?php echo $this->url(array (
-                            'module' => 'auth', 
-                            'controller' => 'index', 
-                            'action' => 'index'
-                        ), null, true) ?>"><?php echo $this->translate('login') ?></a></div>
-                        
-                        <div class="navblock"><a href="<?php echo $this->url(array (
-                            'module' => 'auth', 
-                            'controller' => 'index', 
-                            'action' => 'signup'
-                        ), null, true) ?>"><?php echo $this->translate('sign up') ?></a></div>
+                        <?php echo $this->accountSettings(); ?>
                     </div>
                 </div>
                 <div id="midheader"></div>

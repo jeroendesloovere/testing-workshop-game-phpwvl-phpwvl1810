@@ -1,0 +1,17 @@
+<div class="navblock"><a href="<?php echo $this->url(array (
+    'module' => 'auth', 
+    'controller' => 'index', 
+    'action' => 'logout'
+), null, true) ?>"><?php echo $this->translate('sign off') ?></a></div>
+
+<div class="navblock"><a href="<?php echo $this->url(array (
+    'module' => 'project', 
+    'controller' => 'index', 
+    'action' => 'index'
+), null, true) ?>"><?php echo $this->translate('projects') ?></a></div>
+
+<div class="navblock"><a href="<?php echo $this->url(array (
+    'module' => 'account', 
+    'controller' => 'index', 
+    'action' => 'index'
+), null, true) ?>"><?php echo $this->translate('account') ?></a></div>

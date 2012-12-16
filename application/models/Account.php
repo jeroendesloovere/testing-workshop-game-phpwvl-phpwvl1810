@@ -3,6 +3,10 @@
 class Application_Model_Account extends In2it_Model_Model
 {
     /**
+     * This salt is used tho has passwords
+     */
+    const SALT = 'Do, or do not. There is no try.';
+    /**
      * @var int The primary key for this Account
      */
     protected $_id;
@@ -191,6 +195,14 @@ class Application_Model_Account extends In2it_Model_Model
         if (is_array($row)) {
             $row = new ArrayObject($row, ArrayObject::ARRAY_AS_PROPS);
         }
+
+        $timestamp = date('Y-m-d H:i:s');
+        if (!isset ($row->id)) $row->id = 0;
+        if (!isset ($row->created)) $row->created = $timestamp;
+        if (!isset ($row->modified)) $row->modified = $timestamp;
+        if (!isset ($row->active)) $row->active = 0;
+        if (!isset ($row->token)) $row->token = self::generateToken();
+
         $this->setId($row->id)
              ->setName($row->name)
              ->setEmail($row->email)
@@ -216,5 +228,25 @@ class Application_Model_Account extends In2it_Model_Model
             'active' => (int) $this->isActive(),
             'token' => $this->getToken(),
         );
+    }
+
+    /**
+     * Generates a token for creation of an account
+     *
+     * @return string
+     */
+    public static function generateToken()
+    {
+        return sha1(uniqid(rand(0,time())));
+    }
+    /**
+     * Generates a hashed password with a given password
+     * 
+     * @param string $password
+     * @return string
+     */
+    public static function hashPassword($password)
+    {
+        return sha1(self::SALT . md5(self::SALT . $password));
     }
 }
