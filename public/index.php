@@ -14,6 +14,13 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
+require_once 'Zend/Session.php';
+try {
+    Zend_Session::start();
+} catch (Zend_Session_Exception $exception) {
+    session_start();
+}
+
 /** Zend_Application */
 require_once 'Zend/Application.php';
 
