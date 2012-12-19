@@ -8,7 +8,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // Initialize view
         $view = $this->getPluginResource('view')->getView();
         $view->headMeta()->setHttpEquiv(
-            'text/html; Charset=UTF-8', 'Content-Type'
+            'Content-Type', 'text/html; Charset=UTF-8'
         );
         $view->headTitle('TheiaLive');
         $view->headTitle()->setSeparator(' | ');
@@ -30,7 +30,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     
     public function _initLogSetup()
     {
-        $logger = Zend_Log::factory();
+        $logger = new Zend_Log();
         $firebug = new Zend_Log_Writer_Firebug();
         $logger->addWriter($firebug);
     }
