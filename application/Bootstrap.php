@@ -27,6 +27,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // Return it, so that it can be stored by the bootstrap
         return $view;
     }
+    
+    public function _initLogSetup()
+    {
+        $logger = Zend_Log::factory();
+        $firebug = new Zend_Log_Writer_Firebug();
+        $logger->addWriter($firebug);
+    }
 
 }
 
