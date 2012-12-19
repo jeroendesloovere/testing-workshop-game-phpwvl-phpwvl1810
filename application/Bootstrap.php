@@ -33,6 +33,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $logger = new Zend_Log();
         $firebug = new Zend_Log_Writer_Firebug();
         $logger->addWriter($firebug);
+        $logger->info('Application Environment: ' . APPLICATION_ENV);
+        Zend_Registry::set('logger', $logger);
     }
 
 }
