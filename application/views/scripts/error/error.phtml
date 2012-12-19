@@ -3,6 +3,12 @@
 
   <?php if (isset($this->exception)): ?>
   
+  <h3>Platform:</h3>
+  <p>
+      <b>Server:</b> <?php echo $_SERVER['HTTP_HOST'] ?><br/>
+      <b>Environment:</b> <?php echo APPLICATION_ENV ?>
+  </p>
+  
   <h3>Exception information:</h3>
   <p>
       <b>Message:</b> <?php echo $this->exception->getMessage() ?>
