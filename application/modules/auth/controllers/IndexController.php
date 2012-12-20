@@ -52,7 +52,8 @@ class Auth_IndexController extends Zend_Controller_Action
             return $this->_helper->redirector('index', 'index', 'auth');
         }
         $storage = $auth->getStorage();
-        $storage->write(serialize(new Application_Model_Account($authAdapter->getResultRowObject())));
+        $account = new Application_Model_Account($authAdapter->getResultRowObject());
+        $storage->write(serialize($account));
         
         return $this->_helper->redirector('index', 'index', 'default');
     }
