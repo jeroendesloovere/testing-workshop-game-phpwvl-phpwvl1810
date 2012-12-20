@@ -11,7 +11,7 @@ class Project_IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $project = new Project_Service_Project();
-        $data = $project->getAllProjects(Zend_Auth::getInstance()->getIdentity());
+        $data = $project->getAllProjects(unserialize(Zend_Auth::getInstance()->getIdentity()));
         
         $this->view->assign(array (
             'projects' => $data,
