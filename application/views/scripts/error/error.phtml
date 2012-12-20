@@ -1,5 +1,5 @@
   <?php $this->headTitle('An error has occured') ?>
-  <?php $this->headMeta('Environment', getenv(APPLICATION_ENV)) ?>
+  <?php $this->headMeta(getenv('APPLICATION_ENV'), 'Environment') ?>
   <h1>An error occurred</h1>
   <h2><?php echo $this->message ?></h2>
 
@@ -8,7 +8,7 @@
   <h3>Platform:</h3>
   <p>
       <b>Server:</b> <?php echo $_SERVER['HTTP_HOST'] ?><br/>
-      <b>Environment:</b> <?php echo getenv(APPLICATION_ENV) ?>
+      <b>Environment:</b> <?php echo APPLICATION_ENV ?>
   </p>
   
   <h3>Exception information:</h3>
