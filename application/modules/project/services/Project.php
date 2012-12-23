@@ -9,7 +9,10 @@ class Project_Service_Project
         $projectMapper->fetchAll(
                 $projectCollection, 
                 'Application_Model_Project',
-                array ('accountId = ?' => $account->getId()));
+                array (
+                    'accountId = ?' => $account->getId(),
+                    'accountToken = ?' => $account->getToken(),
+                ));
         
         return $projectCollection;
     }

@@ -14,7 +14,9 @@ class Application_Model_Auth implements Zend_Auth_Adapter_Interface
      * @var Zend_DB_Adapter_Abstract
      */
     protected $_dbAdapter;
-    
+    /**
+     * @var array
+     */
     protected $_resultRowObject;
     /**
      * Constructor for this authenctication class
