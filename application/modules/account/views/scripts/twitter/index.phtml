@@ -1,0 +1,23 @@
+<?php $this->headTitle($this->translate('Twitter Profile')) ?>
+<?php $this->headLink()->appendStylesheet($this->baseUrl('/styles/twitter.css')) ?>
+
+<?php if(!isset ($this->profile)): ?>
+
+<a href="<?php echo $this->url(array (
+    'module' => 'account',
+    'controller' => 'twitter',
+    'action' => 'authenticate',
+), null, true) ?>" class="tw-sign-in-button"></a>
+
+<?php else: ?>
+
+<?php $this->headTitle($this->translate('Twitter Profile for %s', $this->profile->screen_name)) ?>
+<div id="twitterProfile">
+    <div id="twitterProfilePicture"><img src="<?php echo $this->escape($this->profile->profile_image_url) ?>" width="32" height="32" alt="@<?php echo $this->escape($this->profile->screen_name) ?>"/></div>
+    <div id="twitterProfileName"><?php echo $this->escape($this->profile->name) ?> <span id="twitterProfileScreenName"><a href="https://twitter.com/<?php echo $this->escape($this->profile->screen_name) ?>" title="<?php echo $this->translate('Visit the profile of %s', $this->profile->screen_name) ?>">@<?php echo $this->escape($this->profile->screen_name) ?></a></span></div>
+    <div id="twitterProfileDescription"><p><?php echo $this->escape($this->profile->description) ?></p></div>
+    <div id="twitterProfileLocation"><?php echo $this->escape($this->profile->location) ?></div>
+    <div id="twitterProfileLink"><a href="<?php echo $this->escape($this->profile->url) ?>" title="Visit website"><?php echo $this->escape($this->profile->url) ?></a></div>
+</div>
+
+<?php endif; ?>
