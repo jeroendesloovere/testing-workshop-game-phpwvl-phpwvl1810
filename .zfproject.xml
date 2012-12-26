@@ -18,7 +18,14 @@
           <layoutScriptFile layoutName="layout"/>
         </layoutScriptsDirectory>
       </layoutsDirectory>
-      <modelsDirectory/>
+      <modelsDirectory>
+        <dbTableDirectory>
+          <dbTableFile dbTableName="Account"/>
+        </dbTableDirectory>
+        <modelFile modelName="Account"/>
+        <modelFile modelName="AccountMapper"/>
+        <modelFile modelName="AccountCollection"/>
+      </modelsDirectory>
       <modulesDirectory>
         <moduleDirectory moduleName="account">
           <configsDirectory enabled="false"/>
