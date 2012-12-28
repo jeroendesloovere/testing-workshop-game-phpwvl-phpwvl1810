@@ -6,26 +6,24 @@
  * @link http://in2it.be
  */
 /**
- * Application_Model_Account
+ * Application_Model_TaskMapper
  * 
  * @package Application_Model
- * @category Account
+ * @category Task
  */
-class Application_Model_AccountMapper extends In2it_Model_Mapper
+class Application_Model_TaskMapper extends In2it_Model_Mapper
 {
     /**
-     * Retrieves the dbTable object
+     * Retrieves the dbTable gateway
      * 
-     * @return Zend_Db_Table
+     * @return Zend_Db_Table_Abstract
      * @see In2it_Model_Mapper::getDbTable()
      */
     public function getDbTable()
     {
         if (!isset ($this->_dbTable)) {
-            $this->setDbTable('Application_Model_DbTable_Account');
+            $this->setDbTable('Application_Model_DbTable_Task');
         }
         return parent::getDbTable();
     }
-
 }
-

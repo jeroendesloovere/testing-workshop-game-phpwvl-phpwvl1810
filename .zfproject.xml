@@ -21,10 +21,24 @@
       <modelsDirectory>
         <dbTableDirectory>
           <dbTableFile dbTableName="Account"/>
+          <dbTableFile dbTableName="Group"/>
+          <dbTableFile dbTableName="GroupAccount"/>
+          <dbTableFile dbTableName="GroupProject"/>
+          <dbTableFile dbTableName="Project"/>
+          <dbTableFile dbTableName="ProjectTask"/>
+          <dbTableFile dbTableName="Task"/>
+          <dbTableFile dbTableName="TaskAccount"/>
         </dbTableDirectory>
         <modelFile modelName="Account"/>
         <modelFile modelName="AccountMapper"/>
         <modelFile modelName="AccountCollection"/>
+        <modelFile modelName="Group"/>
+        <modelFile modelName="Project"/>
+        <modelFile modelName="Task"/>
+        <modelFile modelName="GroupMapper"/>
+        <modelFile modelName="ProjectMapper"/>
+        <modelFile modelName="TaskMapper"/>
+        <modelFile modelName="Abastract"/>
       </modelsDirectory>
       <modulesDirectory>
         <moduleDirectory moduleName="account">

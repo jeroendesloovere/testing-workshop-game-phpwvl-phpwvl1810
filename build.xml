@@ -55,28 +55,40 @@
     </target>
 
     <target name="phpcpd" description="Detect copy/paste with PHPCPD">
-        <phpcpd>
+        <!--phpcpd>
             <fileset refid="phpfiles" />
             <formatter type="pmd" outfile="${project.basedir}/build/logs/pmd-cpd.xml" />
-        </phpcpd>
+        </phpcpd-->
+        <exec
+            command="/usr/bin/phpcpd --log-pmd ${project.basedir}/build/logs/pmd-cpd.xml ${project.basedir}/application"
+            dir="${project.basedir}"
+            passthru="true" />
     </target>
 
     <target name="phpmd" description="Mess detection with PHPMD">
-        <phpmd>
+        <!--phpmd>
             <fileset refid="phpfiles" />
             <formatter type="xml" outfile="${project.basedir}/build/logs/pmd.xml" />
-        </phpmd>
+        </phpmd-->
+        <exec
+            command="/usr/bin/phpmd --reportfile ${project.basedir}/build/logs/pmd.xml phpmd application xml codesize,unusedcode,naming"
+            dir="${project.basedir}"
+            passthru="true" />
     </target>
 
     <target name="pdepend" description="Dependency calculations with PDepend">
-        <phpdepend>
+        <!--phpdepend>
             <fileset refid="phpfiles" />
             <logger type="jdepend-xml" outfile="${project.basedir}/build/logs/jdepend.xml" />
             <logger type="phpunit-xml" outfile="${project.basedir}/build/logs/phpunit.xml" />
             <logger type="summary-xml" outfile="${project.basedir}/build/logs/pdepend-summary.xml" />
             <logger type="jdepend-chart" outfile="${project.basedir}/build/pdepend/pdepend.svg" />
             <logger type="overview-pyramid" outfile="${project.basedir}/build/pdepend/pyramid.svg" />
-        </phpdepend>
+        </phpdepend-->
+        <exec
+            command="/usr/bin/pdepend --jdepend-xml=${project.basedir}/build/logs/jdepend.xml --coverage-report=${project.basedir}/build/logs/clover.xml --jdepend-chart=${project.basedir}/build/pdepend/pdepend.svg --overview-pyramid=${project.basedir}/build/pdepend/pyramid.svg application/"
+            dir="${project.basedir}"
+            passthru="true" />
     </target>
 
     <target name="phpcb" description="Code browser with PHP_CodeBrowser">

@@ -11,7 +11,7 @@
  * @package Application_Model
  * @category Account
  */
-class Application_Model_Account extends In2it_Model_Model
+class Application_Model_Account extends Application_Model_Abstract
 {
     /**
      * @var The Salt for hashing password
@@ -289,30 +289,6 @@ class Application_Model_Account extends In2it_Model_Model
             'modified' => $this->getModified()->format('Y-m-d H:i:s'),
             'active' => ($this->isActive() ? 1 : 0),
         );
-    }
-    /**
-     * Creates a default DateTime for a particular field
-     * @param mixed $obj
-     * @param string $field 
-     */
-    protected function _defaultTimeStamp($obj, $field)
-    {
-        if (!isset ($obj->$field)) {
-            $obj->$field = new DateTime('now');
-        }
-    }
-    /**
-     * Sets a default value for a not set parameter
-     * 
-     * @param mixed $obj
-     * @param string $field
-     * @param mixed $value 
-     */
-    protected function _defaultValue($obj, $field, $value)
-    {
-        if (!isset ($obj->$field)) {
-            $obj->$field = $value;
-        }
     }
     /**
      * Generates a one-way password hash
