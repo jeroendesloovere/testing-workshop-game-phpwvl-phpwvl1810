@@ -150,8 +150,8 @@ class Application_Model_Task extends Application_Model_Abstract
         return array (
             'taskId' => $this->getId(),
             'taskLabel' => $this->getTaskLabel(),
-            'created' => $this->getCreated(),
-            'modified' => $this->getModified(),
+            'created' => $this->getCreated()->format('Y-m-d H:i:s'),
+            'modified' => $this->getModified()->format('Y-m-d H:i:s'),
         );
     }
 }
