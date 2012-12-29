@@ -39,6 +39,7 @@
         <modelFile modelName="ProjectMapper"/>
         <modelFile modelName="TaskMapper"/>
         <modelFile modelName="Abastract"/>
+        <modelFile modelName="Auth"/>
       </modelsDirectory>
       <modulesDirectory>
         <moduleDirectory moduleName="account">
@@ -52,8 +53,18 @@
               <actionMethod actionName="callback"/>
               <actionMethod actionName="authenticate"/>
             </controllerFile>
+            <controllerFile controllerName="Auth">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="login"/>
+              <actionMethod actionName="logout"/>
+              <actionMethod actionName="signup"/>
+              <actionMethod actionName="register"/>
+            </controllerFile>
           </controllersDirectory>
-          <formsDirectory enabled="false"/>
+          <formsDirectory>
+            <formFile formName="Login"/>
+            <formFile formName="Signup"/>
+          </formsDirectory>
           <layoutsDirectory enabled="false">
             <layoutScriptsDirectory enabled="false"/>
           </layoutsDirectory>
@@ -72,6 +83,21 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Twitter">
                 <viewScriptFile forActionName="authenticate"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="login"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="logout"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="signup"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="register"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -136,6 +162,13 @@
                 <testApplicationActionMethod forActionName="index"/>
                 <testApplicationActionMethod forActionName="callback"/>
                 <testApplicationActionMethod forActionName="authenticate"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Auth">
+                <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="login"/>
+                <testApplicationActionMethod forActionName="logout"/>
+                <testApplicationActionMethod forActionName="signup"/>
+                <testApplicationActionMethod forActionName="register"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

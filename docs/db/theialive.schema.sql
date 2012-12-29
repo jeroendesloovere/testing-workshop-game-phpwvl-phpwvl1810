@@ -1,4 +1,8 @@
 --
+-- Disable foreign key checks
+--
+SET FOREIGN_KEY_CHECKS=0;
+--
 -- Create a table to store accounts
 -- 
 DROP TABLE IF EXISTS `account`;
@@ -106,3 +110,21 @@ CREATE TABLE `taskAccount` (
     FOREIGN KEY `accountIdFk`(`accountId`) 
         REFERENCES `account`(`accountId`)
 ) ENGINE=InnoDb;
+
+--
+-- Storing Session data in the database
+--
+DROP TABLE IF EXISTS `session`;
+CREATE TABLE `session` (
+  `sessionId` char(32) NOT NULL,
+  `savePath` varchar(150) NOT NULL,
+  `name` varchar(150) NOT NULL DEFAULT '',
+  `modified` int(10) unsigned DEFAULT NULL,
+  `lifetime` int(10) unsigned DEFAULT NULL,
+  `data` text,
+  PRIMARY KEY (`sessionId`,`savePath`,`name`)
+);
+--
+-- Enable foreign key checks
+--
+SET FOREIGN_KEY_CHECKS=1;
