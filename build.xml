@@ -71,7 +71,7 @@
             <formatter type="xml" outfile="${project.basedir}/build/logs/pmd.xml" />
         </phpmd-->
         <exec
-            command="/usr/bin/phpmd --reportfile ${project.basedir}/build/logs/pmd.xml phpmd application xml codesize,unusedcode,naming"
+            command="/usr/bin/phpmd --reportfile ${project.basedir}/build/logs/pmd.xml application xml codesize,unusedcode,naming"
             dir="${project.basedir}"
             passthru="true" />
     </target>
