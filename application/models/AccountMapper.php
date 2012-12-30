@@ -26,6 +26,19 @@ class Application_Model_AccountMapper extends In2it_Model_Mapper
         }
         return parent::getDbTable();
     }
-
+    /**
+     * Stores the account object into a data storage
+     * 
+     * @param Application_Model_Account $account
+     * @see In2it_Model_Mapper::save()
+     */
+    public function save(Application_Model_Account $account)
+    {
+        if (0 < $account->getId()) {
+            $this->getDbTable()->update($account->toArray(), array ('accountId = ?' => $account->getId()));
+        } else {
+            $this->getDbTable()->insert($account->toArray());
+        }
+    }
 }
 

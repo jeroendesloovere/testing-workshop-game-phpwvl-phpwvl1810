@@ -40,6 +40,8 @@
         <modelFile modelName="TaskMapper"/>
         <modelFile modelName="Abastract"/>
         <modelFile modelName="Auth"/>
+        <modelFile modelName="GroupAccount"/>
+        <modelFile modelName="GroupAccountMapper"/>
       </modelsDirectory>
       <modulesDirectory>
         <moduleDirectory moduleName="account">
@@ -59,11 +61,20 @@
               <actionMethod actionName="logout"/>
               <actionMethod actionName="signup"/>
               <actionMethod actionName="register"/>
+              <actionMethod actionName="confirmation"/>
+              <actionMethod actionName="verify"/>
+              <actionMethod actionName="forgot"/>
+              <actionMethod actionName="reset"/>
+              <actionMethod actionName="newPassword"/>
+              <actionMethod actionName="resetPassword"/>
+              <actionMethod actionName="invalidToken"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory>
             <formFile formName="Login"/>
             <formFile formName="Signup"/>
+            <formFile formName="Forgot"/>
+            <formFile formName="NewPassword"/>
           </formsDirectory>
           <layoutsDirectory enabled="false">
             <layoutScriptsDirectory enabled="false"/>
@@ -98,6 +109,27 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Auth">
                 <viewScriptFile forActionName="register"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="confirmation"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="verify"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="forgot"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="reset"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="newPassword"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="resetPassword"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Auth">
+                <viewScriptFile forActionName="invalidToken"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -169,6 +201,13 @@
                 <testApplicationActionMethod forActionName="logout"/>
                 <testApplicationActionMethod forActionName="signup"/>
                 <testApplicationActionMethod forActionName="register"/>
+                <testApplicationActionMethod forActionName="confirmation"/>
+                <testApplicationActionMethod forActionName="verify"/>
+                <testApplicationActionMethod forActionName="forgot"/>
+                <testApplicationActionMethod forActionName="reset"/>
+                <testApplicationActionMethod forActionName="newPassword"/>
+                <testApplicationActionMethod forActionName="resetPassword"/>
+                <testApplicationActionMethod forActionName="invalidToken"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

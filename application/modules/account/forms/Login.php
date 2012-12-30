@@ -1,5 +1,16 @@
 <?php
-
+/**
+ * TheiaLive
+ * 
+ * @copyright In2it vof (c) 2012. All rights reserved
+ * @link http://in2it.be
+ */
+/**
+ * Account_Form_Login
+ * 
+ * @package Account_Form
+ * @category Login
+ */
 class Account_Form_Login extends Zend_Form
 {
 

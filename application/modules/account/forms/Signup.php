@@ -1,11 +1,22 @@
 <?php
-
+/**
+ * TheiaLive
+ * 
+ * @copyright In2it vof (c) 2012. All rights reserved
+ * @link http://in2it.be
+ */
+/**
+ * Account_Form_Signup
+ * 
+ * @package Account_Form
+ * @category Signup
+ */
 class Account_Form_Signup extends Zend_Form
 {
 
     public function init()
     {
-        $this->addElement('text', 'firstname', array (
+        $this->addElement('text', 'firstName', array (
             'Label' => 'Your first name',
             'Required' => true,
             'Filters' => array (
@@ -17,7 +28,7 @@ class Account_Form_Signup extends Zend_Form
                 array ('StringLength', null, array ('min' => 2, 'max' => 45)),
             ),
         ));
-        $this->addElement('text', 'lastname', array (
+        $this->addElement('text', 'lastName', array (
             'Label' => 'Your last name',
             'Required' => true,
             'Filters' => array (

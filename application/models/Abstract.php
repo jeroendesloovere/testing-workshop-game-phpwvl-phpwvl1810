@@ -1,5 +1,16 @@
 <?php
-
+/**
+ * TheiaLive
+ * 
+ * @copyright In2it vof (c) 2012. All rights reserved
+ * @link http://in2it.be
+ */
+/**
+ * Application_Model_Abstract
+ * 
+ * @package Application_Model
+ * @abstract
+ */
 abstract class Application_Model_Abstract extends In2it_Model_Model
 {
     /**

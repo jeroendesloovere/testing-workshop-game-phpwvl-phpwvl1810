@@ -1,0 +1,6 @@
+   Confirm your TheiaLive account
+
+   Hi {{NAME}},
+   Thank you for registering with TheiaLive. You're almost there! All that's left is to confirm your account registration.
+
+   Please click on this link {{REGISTRATION_LINK}} to get started.

@@ -300,4 +300,13 @@ class Application_Model_Account extends Application_Model_Abstract
     {
         return crypt($password, self::ACCOUNT_SALT);
     }
+    /**
+     * Generates a 40-character random string
+     * 
+     * @return string
+     */
+    public static function generateToken()
+    {
+        return sha1(md5(uniqid(null, true)));
+    }
 }

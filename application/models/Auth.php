@@ -1,5 +1,16 @@
 <?php
-
+/**
+ * TheiaLive
+ * 
+ * @copyright In2it vof (c) 2012. All rights reserved
+ * @link http://in2it.be
+ */
+/**
+ * Application_Model_Auth
+ * 
+ * @package Application_Model
+ * @category Auth
+ */
 class Application_Model_Auth implements Zend_Auth_Adapter_Interface
 {
     /**
