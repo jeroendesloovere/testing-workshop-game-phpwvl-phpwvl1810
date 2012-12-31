@@ -167,6 +167,9 @@ class Account_Service_Auth
         if (!$this->tokenExists($token)) {
             return false;
         }
+        $account = new Application_Model_Account();
+        $accountMapper = new Application_Model_AccountMapper();
+        $accountMapper->fetchRow($account, array ('token LIKE ?' => $token));
         
         $account->setToken(null);
         $account->setPassword($password);
