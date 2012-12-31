@@ -102,9 +102,13 @@ class Account_Service_Auth
     {
         $account = new Application_Model_Account();
         $accountMapper = new Application_Model_AccountMapper();
+        
+        $accountMapper->fetchRow($account, array ('token LIKE ?' => $token));
+        
         $account->setActive();
         $account->setToken(null);
         $account->setModified(new DateTime('now'));
+        
         $accountMapper->save($account);
     }
     public function findAccountByEmail($email)
