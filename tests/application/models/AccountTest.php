@@ -4,7 +4,8 @@
  * @group Application_Model_Account
  * @group Model
  */
-class Application_Model_AccountTest extends PHPUnit_Framework_TestCase
+require_once 'DatabaseTestCase.php';
+class Application_Model_AccountTest extends DatabaseTestCase
 {
     public function testPasswordNotStoredInPlainText()
     {
@@ -53,5 +54,51 @@ class Application_Model_AccountTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($account->isActive());
         $data['password'] = Application_Model_Account::generatePasswordHash($data['password']);
         $this->assertEquals($data, $account->toArray(), 'Error with toArray() method');
+    }
+    
+    /** database integration tests **/
+    
+    public function testAccountIsFoundInDatabase()
+    {
+        $ds = new Zend_Test_PHPUnit_Db_DataSet_QueryDataSet(
+            $this->getConnection());
+        $ds->addTable('account', 'SELECT * FROM `account`');
+        
+        $this->assertDataSetsEqual($this->createFlatXMLDataSet(
+                TEST_PATH . '/_files/selectAccountDataset.xml'), $ds);
+    }
+    
+    public function testAccountCanBeCreatedInDatabase()
+    {
+        $data = array (
+            'firstName' => 'Jonny',
+            'lastName' => 'Test',
+            'email' => 'jonny.test@example.com',
+            'password' => 'Test4Fun',
+        );
+        $account = new Application_Model_Account($data);
+        $accountMapper = new Application_Model_AccountMapper();
+        $accountMapper->save($account);
+        
+        $data['accountId'] = $account->getId();
+        $data['password'] = Application_Model_Account::generatePasswordHash($data['password']);
+        $data['token'] = '';
+        $data['created'] = $account->getCreated()->format('Y-m-d H:i:s');
+        $data['modified'] = $account->getModified()->format('Y-m-d H:i:s');
+        $data['active'] = 0;
+        
+        $this->assertEquals($data, $account->toArray());
+        
+        $ds = new Zend_Test_PHPUnit_Db_DataSet_QueryDataSet(
+            $this->getConnection());
+        $ds->addTable('account', 
+            'SELECT accountId, firstName, lastName, email, password, token, active FROM `account`');
+        
+        require_once 'PHPUnit/Extensions/Database/Dataset/DataSetFilter.php';
+        $filteredDs = new PHPUnit_Extensions_Database_DataSet_DataSetFilter(
+            $ds, array ('created','modified'));
+        
+        $this->assertDataSetsEqual($this->createFlatXMLDataSet(
+            TEST_PATH . '/_files/newAccountDataset.xml'), $filteredDs);
     }
 }

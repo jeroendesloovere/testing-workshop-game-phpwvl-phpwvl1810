@@ -48,6 +48,8 @@ class Account_Service_Auth
     public function registerAccount($data)
     {
         $account = new Application_Model_Account($data);
+        $account->setToken(Application_Model_Account::generateToken());
+        
         $accountMapper = new Application_Model_AccountMapper();
         $accountMapper->save($account);
         
@@ -68,7 +70,7 @@ class Account_Service_Auth
         $text = file_get_contents(APPLICATION_PATH . '/templates/mail/registration.txt');
         
         $user = sprintf('%s %s', $account->getFirstName(), $account->getLastName());
-        $host = $_SERVER['HTTP_HOST'];
+        $host = isset ($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'theialive.local';
         $link = sprintf('%s://%s/%s/%s/%s/%s/%s',
                 isset ($_SERVER['HTTPS']) ? 'https' : 'http',
                 $host,
@@ -93,8 +95,9 @@ class Account_Service_Auth
         $mail->setBodyHtml($html);
         $mail->setBodyText($text);
         $mail->setSubject('Confirm your registration at TheiaLive');
-        
-        $mail->send();
+        if ('testing' !== APPLICATION_ENV) {
+            $mail->send();
+        }
         
     }
     
@@ -159,8 +162,9 @@ class Account_Service_Auth
         $mail->setBodyHtml($html);
         $mail->setBodyText($text);
         $mail->setSubject('Request for a new password at TheiaLive');
-        
-        $mail->send();
+        if ('testing' !== APPLICATION_ENV) {
+            $mail->send();
+        }
     }
     public function setNewAccountPassword($password, $token)
     {

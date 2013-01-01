@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <!-- password: test1234 -->
+    <account
+        accountId="1"
+        firstName="John"
+        lastName="Doe"
+        email="john.doe@example.com"
+        password="YoOX7hibF4h5."
+        token=""
+        active="1" />
+    <!-- password: abcd1234 -->
+    <account
+        accountId="2"
+        firstName="Jane"
+        lastName="Doe"
+        email="jane.doe@example.com"
+        password="YokNejSO8KsNU"
+        token="e896b31e7ea87a0cf38d329e444afe0ff1af7ca7"
+        active="0" />
+    <!-- password: Test4Fun -->
+    <account
+        accountId="3"
+        firstName="Jonny"
+        lastName="Test"
+        email="jonny.test@example.com"
+        password="YoCQvBQ0o9QFA"
+        token=""
+        active="0" />
+</dataset>
