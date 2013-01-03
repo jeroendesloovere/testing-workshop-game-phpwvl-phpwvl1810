@@ -10,19 +10,19 @@ abstract class DatabaseTestCase extends Zend_Test_PHPUnit_DatabaseTestCase
     
     protected function setUp()
     {
-        $this->application = new Zend_Application(
+        $this->_application = new Zend_Application(
             APPLICATION_ENV, APPLICATION_PATH . '/configs/application.ini');
         $this->bootstrap = array($this, 'appBootstrap');
         parent::setUp();
     }
     public function appBootstrap()
     {
-        $this->application->bootstrap();
+        $this->_application->bootstrap();
     }
     protected function getConnection()
     {
         if (null === $this->_dbMock) {
-            $bootstrap = $this->application->getBootstrap();
+            $bootstrap = $this->_application->getBootstrap();
             $bootstrap->bootstrap('db');
             $connection = $bootstrap->getResource('db');
             

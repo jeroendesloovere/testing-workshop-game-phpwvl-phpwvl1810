@@ -94,11 +94,7 @@ class Application_Model_AccountTest extends DatabaseTestCase
         $ds->addTable('account', 
             'SELECT accountId, firstName, lastName, email, password, token, active FROM `account`');
         
-        require_once 'PHPUnit/Extensions/Database/Dataset/DataSetFilter.php';
-        $filteredDs = new PHPUnit_Extensions_Database_DataSet_DataSetFilter(
-            $ds, array ('created','modified'));
-        
         $this->assertDataSetsEqual($this->createFlatXMLDataSet(
-            TEST_PATH . '/_files/newAccountDataset.xml'), $filteredDs);
+            TEST_PATH . '/_files/newAccountDataset.xml'), $ds);
     }
 }
