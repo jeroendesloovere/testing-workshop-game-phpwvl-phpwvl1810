@@ -38,6 +38,7 @@ class Application_Model_AccountMapper extends In2it_Model_Mapper
             $this->getDbTable()->update($account->toArray(), array ('accountId = ?' => $account->getId()));
         } else {
             $this->getDbTable()->insert($account->toArray());
+            $account->setId($this->getDbTable()->getAdapter()->lastInsertId());
         }
     }
 }

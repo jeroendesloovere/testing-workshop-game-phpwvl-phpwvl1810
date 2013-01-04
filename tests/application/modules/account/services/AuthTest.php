@@ -18,7 +18,7 @@ class Account_Service_AuthTest extends DatabaseTestCase
         $ds = new Zend_Test_PHPUnit_Db_DataSet_QueryDataSet(
             $this->getConnection());
         $ds->addTable('account', 
-            'SELECT accountId, firstName, lastName, email, password, token, active FROM account');
+            'SELECT accountId, firstName, lastName, email, password, active FROM account');
         
         $this->assertDataSetsEqual($this->createFlatXMLDataSet(
             TEST_PATH . '/_files/newAccountDataset.xml'), $ds);

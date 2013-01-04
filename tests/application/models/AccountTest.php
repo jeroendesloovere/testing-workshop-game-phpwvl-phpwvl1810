@@ -80,19 +80,26 @@ class Application_Model_AccountTest extends DatabaseTestCase
         $accountMapper = new Application_Model_AccountMapper();
         $accountMapper->save($account);
         
-        $data['accountId'] = $account->getId();
-        $data['password'] = Application_Model_Account::generatePasswordHash($data['password']);
-        $data['token'] = '';
-        $data['created'] = $account->getCreated()->format('Y-m-d H:i:s');
-        $data['modified'] = $account->getModified()->format('Y-m-d H:i:s');
-        $data['active'] = 0;
+        $expected = array (
+            'accountId' => 3,
+            'firstName' => $data['firstName'],
+            'lastName' => $data['lastName'],
+            'email' => $data['email'],
+            'password' => Application_Model_Account::generatePasswordHash($data['password']),
+            'token' => '',
+            'active' => 0,
+        );
         
-        $this->assertEquals($data, $account->toArray());
+        $actual = $account->toArray();
+        unset ($actual['created']);
+        unset ($actual['modified']);
+        
+        $this->assertEquals($expected, $actual);
         
         $ds = new Zend_Test_PHPUnit_Db_DataSet_QueryDataSet(
             $this->getConnection());
         $ds->addTable('account', 
-            'SELECT accountId, firstName, lastName, email, password, token, active FROM `account`');
+            'SELECT accountId, firstName, lastName, email, password, active FROM `account`');
         
         $this->assertDataSetsEqual($this->createFlatXMLDataSet(
             TEST_PATH . '/_files/newAccountDataset.xml'), $ds);

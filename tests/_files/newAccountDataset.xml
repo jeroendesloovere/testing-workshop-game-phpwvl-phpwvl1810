@@ -7,7 +7,6 @@
         lastName="Doe"
         email="john.doe@example.com"
         password="YoOX7hibF4h5."
-        token=""
         active="1" />
     <!-- password: abcd1234 -->
     <account
@@ -16,7 +15,6 @@
         lastName="Doe"
         email="jane.doe@example.com"
         password="YokNejSO8KsNU"
-        token="e896b31e7ea87a0cf38d329e444afe0ff1af7ca7"
         active="0" />
     <!-- password: Test4Fun -->
     <account
@@ -25,6 +23,5 @@
         lastName="Test"
         email="jonny.test@example.com"
         password="YoCQvBQ0o9QFA"
-        token=""
         active="0" />
 </dataset>
