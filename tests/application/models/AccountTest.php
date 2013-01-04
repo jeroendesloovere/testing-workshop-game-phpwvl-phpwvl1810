@@ -26,7 +26,7 @@ class Application_Model_AccountTest extends DatabaseTestCase
         $this->assertSame($data['firstName'], $account->getFirstName());
         $this->assertSame($data['lastName'], $account->getLastName());
         $this->assertSame($data['email'], $account->getEmail());
-        $this->assertSame(Application_Model_Account::generatePasswordHash($data['password']), $account->getPassword());
+        $this->assertSame($data['password'], $account->getPassword());
         $this->assertFalse($account->isActive());
     }
     public function testAccountCanBePopulated()
@@ -47,12 +47,11 @@ class Application_Model_AccountTest extends DatabaseTestCase
         $this->assertSame($data['firstName'], $account->getFirstName(), 'Error with first name');
         $this->assertSame($data['lastName'], $account->getLastName(), 'Error with last name');
         $this->assertSame($data['email'], $account->getEmail(), 'Error with email');
-        $this->assertSame(Application_Model_Account::generatePasswordHash($data['password']), $account->getPassword(), 'Error with password');
+        $this->assertSame($data['password'], $account->getPassword(), 'Error with password');
         $this->assertSame($data['token'], $account->getToken(), 'Error with token');
         $this->assertSame($data['created'], $account->getCreated()->format('Y-m-d H:i:s'), 'Error with created');
         $this->assertSame($data['modified'], $account->getModified()->format('Y-m-d H:i:s'), 'Error with modified');
         $this->assertTrue($account->isActive());
-        $data['password'] = Application_Model_Account::generatePasswordHash($data['password']);
         $this->assertEquals($data, $account->toArray(), 'Error with toArray() method');
     }
     
@@ -74,7 +73,7 @@ class Application_Model_AccountTest extends DatabaseTestCase
             'firstName' => 'Jonny',
             'lastName' => 'Test',
             'email' => 'jonny.test@example.com',
-            'password' => 'Test4Fun',
+            'password' => Application_Model_Account::generatePasswordHash('Test4Fun'),
         );
         $account = new Application_Model_Account($data);
         $accountMapper = new Application_Model_AccountMapper();
@@ -85,7 +84,7 @@ class Application_Model_AccountTest extends DatabaseTestCase
             'firstName' => $data['firstName'],
             'lastName' => $data['lastName'],
             'email' => $data['email'],
-            'password' => Application_Model_Account::generatePasswordHash($data['password']),
+            'password' => $data['password'],
             'token' => '',
             'active' => 0,
         );

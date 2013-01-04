@@ -33,7 +33,7 @@ class Application_Model_AccountCollectionTest extends PHPUnit_Framework_TestCase
         $this->assertSame($data['firstName'], $collection->current()->getFirstName());
         $this->assertSame($data['lastName'], $collection->current()->getLastName());
         $this->assertSame($data['email'], $collection->current()->getEmail());
-        $this->assertSame(Application_Model_Account::generatePasswordHash($data['password']), $collection->current()->getPassword());
+        $this->assertSame($data['password'], $collection->current()->getPassword());
         $this->assertFalse($collection->current()->isActive());
     }
 }

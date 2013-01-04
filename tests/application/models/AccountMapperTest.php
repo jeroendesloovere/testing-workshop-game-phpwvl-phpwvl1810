@@ -40,7 +40,6 @@ class Application_Model_AccountMapperTest extends PHPUnit_Framework_TestCase
         $account = new Application_Model_Account();
         $accountMapper->fetchRow($account, array ('accountId = ?' => 2));
         $data = $this->_data[1];
-        $data['password'] = Application_Model_Account::generatePasswordHash($data['password']);
         $this->assertEquals($data, $account->toArray());
     }
 }

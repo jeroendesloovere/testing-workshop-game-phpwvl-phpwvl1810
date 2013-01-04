@@ -141,7 +141,8 @@ class Application_Model_Account extends Application_Model_Abstract
      */
     public function setPassword($password)
     {
-        $this->_password = self::generatePasswordHash($password);
+//        $this->_password = self::generatePasswordHash($password);
+        $this->_password = (string) $password;
         return $this;
     }
     /**

@@ -49,6 +49,7 @@ class Account_Service_Auth
     {
         $account = new Application_Model_Account($data);
         $account->setToken(Application_Model_Account::generateToken());
+        $account->setPassword(Application_Model_Account::generatePasswordHash($account->getPassword()));
         
         $accountMapper = new Application_Model_AccountMapper();
         $accountMapper->save($account);
