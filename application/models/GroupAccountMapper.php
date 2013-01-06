@@ -11,7 +11,7 @@
  * @package Application_Model
  * @category GroupAccount
  */
-class Application_Model_GroupAccountMapper
+class Application_Model_GroupAccountMapper extends In2it_Model_Mapper
 {
     /**
      * @var Zend_Db_Table_Abstract
@@ -64,9 +64,11 @@ class Application_Model_GroupAccountMapper
             $groupAccount->populate($resultSet->current());
         }
     }
-    public function fetchRow(Application_Model_GroupAccount $groupAccount, $where = null, $order = null)
+    public function save(Application_Model_GroupAccount $groupAccount)
     {
-        
+        if (0 < $groupAccount->getGroupId() && 0 < $groupAccount->getAccountId()) {
+            $this->getDbTable()->insert($groupAccount->toArray());
+        }
     }
 }
 

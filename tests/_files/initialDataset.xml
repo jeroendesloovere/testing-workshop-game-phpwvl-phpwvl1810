@@ -22,4 +22,20 @@
         created="2013-01-01 00:00:00"
         modified="2013-01-01 00:00:00"
         active="0" />
+    <group
+        groupId="1"
+        groupName="PHP CSI"
+        created="2012-02-29 14:30:00"
+        modified="2012-06-30 23:29:29" />
+    <group
+        groupId="2"
+        groupName="Happy Chickens"
+        created="2011-03-16 12:35:00"
+        modified="2012-06-30 23:29:29" />
+    <groupAccount
+        groupId="1"
+        accountId="1" />
+    <groupAccount
+        groupId="2"
+        accountId="1" />
 </dataset>

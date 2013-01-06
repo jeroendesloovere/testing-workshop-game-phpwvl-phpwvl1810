@@ -30,6 +30,18 @@ class Application_Model_Group extends Application_Model_Abstract
      */
     protected $_modified;
     /**
+     * Constructor for this class
+     * 
+     * @param null|array|Zend_Db_Row $params
+     * @see In2it_Model_Model::__construct()
+     */
+    public function __construct($params = null)
+    {
+        $this->setCreated(new DateTime('now'));
+        $this->setModified(new DateTime('now'));
+        parent::__construct($params);
+    }
+    /**
      * Sets the sequence ID for this Group
      * 
      * @param int $groupId
