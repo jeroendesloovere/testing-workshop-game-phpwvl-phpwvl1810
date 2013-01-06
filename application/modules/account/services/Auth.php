@@ -138,7 +138,7 @@ class Account_Service_Auth
         $text = file_get_contents(APPLICATION_PATH . '/templates/mail/reset-password.txt');
         
         $user = sprintf('%s %s', $account->getFirstName(), $account->getLastName());
-        $host = $_SERVER['HTTP_HOST'];
+        $host = isset ($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'theialive.local';
         $link = sprintf('%s://%s/%s/%s/%s/%s/%s',
                 isset ($_SERVER['HTTPS']) ? 'https' : 'http',
                 $host,
@@ -177,7 +177,7 @@ class Account_Service_Auth
         $accountMapper->fetchRow($account, array ('token LIKE ?' => $token));
         
         $account->setToken(null);
-        $account->setPassword($password);
+        $account->setPassword(Application_Model_Account::generatePasswordHash($password));
         $account->setModified(new DateTime('now'));
         $account->setActive(1);
         $accountMapper->save($account);
