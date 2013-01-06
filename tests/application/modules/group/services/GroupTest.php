@@ -3,14 +3,14 @@
 require_once 'DatabaseTestCase.php';
 class Group_Service_GroupTest extends DatabaseTestCase
 {
-    public function testGroupCanBeCreated()
+    public function testGroupCanBeCreatedWithExistingAccount()
     {
         $account = new Application_Model_Account();
         $accountMapper = new Application_Model_AccountMapper();
         $accountMapper->find($account, 1);
         
         $service = new Group_Service_Group();
-        $service->createGroup($account, 'Test Group 1');
+        $this->assertTrue($service->createGroup($account, 'Test Group 1'));
         
         $groupDs = new Zend_Test_PHPUnit_Db_DataSet_QueryDataSet(
             $this->getConnection());
@@ -25,5 +25,14 @@ class Group_Service_GroupTest extends DatabaseTestCase
             'SELECT * FROM `groupAccount`');
         $this->assertDataSetsEqual($this->createFlatXMLDataSet(
             TEST_PATH . '/_files/newGroupAccountDataset.xml'), $groupAccountDs);
+    }
+    
+    public function testGroupCannotBeCreatedWithoutExistingAccount()
+    {
+        $account = new Application_Model_Account();
+        $accountMapper = new Application_Model_AccountMapper();
+        
+        $service = new Group_Service_Group();
+        $this->assertFalse($service->createGroup($account, 'Test Group 1'));
     }
 }
