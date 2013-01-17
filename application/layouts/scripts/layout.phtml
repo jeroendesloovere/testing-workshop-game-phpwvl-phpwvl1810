@@ -1,0 +1,36 @@
+<?php echo $this->docType() ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <?php
+            echo $this->headMeta();
+            echo $this->headTitle();
+            echo $this->headLink();
+            echo $this->headStyle();
+            echo $this->headScript();
+        ?>
+    </head>
+    
+    <body>
+        <div id="master">
+            <div id="header">
+                <div id="topheader">
+                    <div id="logo"><a href="<?php echo $this->baseUrl('/') ?>" title="TheiaLive, track your relations"><strong>Theia</strong><i>live</i></a></div>
+                    <div id="topnav">
+                        <?php echo $this->accountSettings(); ?>
+                    </div>
+                </div>
+                <div id="midheader"></div>
+                <div id="botheader"></div>
+            </div>
+            <div id="middle" class="">
+                <div class="content">
+
+<?php echo $this->layout()->content; ?>
+
+                </div>
+            </div>
+            <div id="footer"></div>
+        </div>
+        <?php echo $this->googleTracker('UA-352655-8') ?>
+    </body>
+</html>
