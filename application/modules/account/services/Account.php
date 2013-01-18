@@ -18,12 +18,8 @@ class Account_Service_Account extends Application_Service_Abstract
         
         $account = new Account_Model_Account($data);
         $accountMapper = $this->getMapper();
-        try {
-            $accountMapper->save($account);
-        } catch (Zend_Db_Exception $exception) {
-            throw new InvalidArgumentException(
-                'Invalid arguments provided for creating an account');
-        }
+        
+        $accountMapper->save($account);
         return $account;
     }
 }

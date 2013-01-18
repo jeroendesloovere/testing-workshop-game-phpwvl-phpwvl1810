@@ -51,11 +51,9 @@ class Account_Model_Account extends Application_Model_Abstract
      * @var array The filtering rules for this Account
      */
     protected $_filter = array (
-        'accountId' => array ('Int'),
         'firstName' => array ('StringTrim', 'StripTags'),
         'lastName' => array ('StringTrim', 'StripTags'),
         'email' => array ('StringTrim', 'StripTags', 'StringToLower'),
-        'password' => array (),
     );
     /**
      * @var array The validation rules for this Account
@@ -64,7 +62,7 @@ class Account_Model_Account extends Application_Model_Abstract
         'accountId' => array ('Int'),
         'firstName' => array (
             array ('StringLength', array ('min' => 2, 'max' => 150)),
-            array ('Alnum', array ('allowWhitespace' => true)),
+            array ('Alpha', array ('allowWhitespace' => true)),
         ),
         'lastName' => array (
             'Mwop',
@@ -73,9 +71,6 @@ class Account_Model_Account extends Application_Model_Abstract
         'email' => array (
             array ('StringLength', array ('min' => 2, 'max' => 150)),
             'EmailAddress',
-        ),
-        'password' => array (
-            array ('StringLength', array ('min' => '8', 'max' => 250)),
         ),
     );
     public function __construct($params = null)
@@ -193,16 +188,10 @@ class Account_Model_Account extends Application_Model_Abstract
      * 
      * @param string $password
      * @return Application_Model_Account
-     * @throws InvalidArgumentException
      */
     public function setPassword($password)
     {
-        $this->_input->setData(array ('password' => $password));
-        if (!$this->_input->isValid()) {
-            throw new InvalidArgumentException(
-                'Invalid arguments provided for password');
-        }
-        $this->_password = (string) $this->_input->password;
+        $this->_password = (string) $password;
         return $this;
     }
     /**

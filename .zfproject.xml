@@ -39,6 +39,7 @@
             <dbTableDirectory>
               <dbTableFile dbTableName="Account"/>
             </dbTableDirectory>
+            <modelFile modelName="AccountCollection"/>
           </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>

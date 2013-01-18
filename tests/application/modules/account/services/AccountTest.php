@@ -13,8 +13,11 @@ class Account_Service_AccountTest extends PHPUnit_Framework_TestCase
     public function badDataProvider()
     {
         return array (
-            array ('', '', '', ''),
-            array ('test', 'test', 'test', 'test'),
+            array ('test', 'test', 'test', 'test', 'test', 'Invalid arguments provided for account ID'),
+            array (0, '', '', '', '', 'Invalid arguments provided for first name'),
+            array (1, 'firstName1234', 'lastName', 'first.last@example.com', 'test1234', 'Invalid arguments provided for first name'),
+            array (2, 'firstName', 'lastName 1234', 'first.last@example.com', 'thisIs@V3ryStrongPwd', 'Invalid arguments provided for last name'),
+            array (3, 'firstName', 'lastName', 'first.last @ example.com', 'thisIs@V3ryStrongPwd', 'Invalid arguments provided for email'),
         );
     }
     /**
@@ -51,18 +54,24 @@ class Account_Service_AccountTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider badDataProvider
      * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Invalid arguments provided for creating an account
      */
-    public function testRegisterNewAccountFailsWithInvalidData($firstName, $lastName, $email, $password)
+    public function testRegisterNewAccountFailsWithInvalidData($accountId, $firstName, $lastName, $email, $password, $message)
     {
         $data = array (
+            'accountId' => $accountId,
             'firstName' => $firstName,
             'lastName'  => $lastName,
             'email'     => $email,
             'password'  => $password,
         );
         $service = new Account_Service_Account();
-        $service->createAccount($data);
+        try {
+            $service->createAccount($data);
+        } catch (InvalidArgumentException $exception) {
+            $this->assertEquals($message, $exception->getMessage());
+            throw $exception;
+        }
+        $this->fail('Expected InvalidArgumentException was not thrown');
     }
     public function testActivateNewAccount()
     {

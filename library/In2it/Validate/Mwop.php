@@ -42,7 +42,7 @@ class In2it_Validate_Mwop extends Zend_Validate_Abstract
     {
         $this->_setValue($fullname);
         
-        $check = preg_match('([\"\=\*\;\[\]\#\\\?]+)', $fullname);
+        $check = preg_match('([^a-zA-Z\s\'\,\.\-]+)', $fullname);
         if (1 === $check) {
             $this->_error(self::MWOP, $fullname);
             return false;

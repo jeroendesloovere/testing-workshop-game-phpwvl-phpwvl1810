@@ -48,4 +48,50 @@ class Account_Model_AccountTest extends PHPUnit_Framework_TestCase
         );
         $account = new Account_Model_Account($data);
     }
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Invalid arguments provided for account ID
+     */
+    public function testCreateAccountFailsWhenProvidingBadId()
+    {
+        $data = array (
+            'accountId' => 'foo',
+            'firstName' => 'firstName',
+            'lastName' => 'lastName',
+            'email' => 'email@example.com',
+            'password' => '$password',
+        );
+        $account = new Account_Model_Account($data);
+    }
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Invalid arguments provided for first name
+     */
+    public function testCreateAccountFailsWhenProvidingBadFirstName()
+    {
+        $data = array (
+            'accountId' => 'foo',
+            'firstName' => 'firstName12345',
+            'lastName' => 'lastName',
+            'email' => 'email@example.com',
+            'password' => '$password',
+        );
+        $account = new Account_Model_Account($data);
+    }
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Invalid arguments provided for last name
+     */
+    public function testCreateAccountFailsWhenProvidingBadLastName()
+    {
+        $data = array (
+            'accountId' => 1,
+            'firstName' => 'firstName',
+            'lastName' => 12345,
+            'email' => 'email@example.com',
+            'password' => '$password',
+        );
+        $account = new Account_Model_Account($data);
+        Zend_Debug::dump($account->toArray());
+    }
 }
