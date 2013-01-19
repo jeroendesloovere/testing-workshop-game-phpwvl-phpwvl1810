@@ -73,13 +73,69 @@ class Account_Service_AccountTest extends PHPUnit_Framework_TestCase
         }
         $this->fail('Expected InvalidArgumentException was not thrown');
     }
-    public function testActivateNewAccount()
+    public function testActivateNewAccountWithValidToken()
     {
+        $token = Account_Model_Account::generateToken();
+        $dataObj = new ArrayIterator(array (
+            array (
+                'accountId' => 1,
+                'firstName' => 'John',
+                'lastName'  => 'Doe',
+                'email'     => 'john.doe@example.com',
+                'password'  => 'password',
+                'token'     => $token,
+            ),
+            array (
+                'accountId' => 2,
+                'firstName' => 'Jane',
+                'lastName'  => 'Doe',
+                'email'     => 'jane.doe@example.com',
+                'password'  => 'password',
+                'token'     => 'Abljdljdjdlkjdaljfdljaldjfjajjelqjre',
+            ),
+        ));
         
+        $accountDb = $this->getMock('Account_Model_DbTable_Account');
+        $accountDb->expects($this->once())
+                  ->method('fetchRow')
+                  ->will($this->returnValue($dataObj[0]));
+        $accountDb->expects($this->any())
+                  ->method('save')
+                  ->will($this->returnValue(true));
+        
+        $accountMapper = new Account_Model_AccountMapper();
+        $accountMapper->setDbTable($accountDb);
+        
+        // Ok let's check if it's all working now
+        $service = new Account_Service_Account($accountMapper);
+        $result = $service->activateAccount($token);
+        $this->assertTrue($result);
+    }
+    public function testActivateNewAccountFailsWithFalseToken()
+    {
+        $token = Account_Model_Account::generateToken();
+        
+        $accountDb = $this->getMock('Account_Model_DbTable_Account');
+        $accountDb->expects($this->once())
+                  ->method('fetchRow')
+                  ->will($this->returnValue(null));
+        
+        $accountMapper = new Account_Model_AccountMapper();
+        $accountMapper->setDbTable($accountDb);
+        
+        // Ok let's check if it's all working now
+        $service = new Account_Service_Account($accountMapper);
+        $result = $service->activateAccount($token);
+        $this->assertFalse($result);
     }
     public function testSigninAccount()
     {
+        $username = 'test@example.com';
+        $password = 'test1234';
         
+        $accountDb->expects($this->once())
+                  ->method('fetchRow')
+                  ->will($this->returnValue());
     }
     public function testResetAccount()
     {

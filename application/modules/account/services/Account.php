@@ -22,4 +22,17 @@ class Account_Service_Account extends Application_Service_Abstract
         $accountMapper->save($account);
         return $account;
     }
+    public function activateAccount($token)
+    {
+        $account = new Account_Model_Account();
+        $accountMapper = $this->getMapper();
+        
+        $accountMapper->fetchRow($account, array ('token = ?' => $token));
+        if (0 === (int) $account->getId()) {
+            return false;
+        }
+        $account->setActive();
+        $accountMapper->save($account);
+        return true;
+    }
 }
