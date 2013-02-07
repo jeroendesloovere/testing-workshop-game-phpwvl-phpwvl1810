@@ -13,12 +13,15 @@ class Task_Form_Task extends Zend_Form
                 'StripTags',
             ),
             'Validators' => array (),
+            'Size' => 35,
         ));
         $this->addElement('textarea', 'description', array (
             'Label' => 'Description',
             'Required' => false,
             'Filters' => array (),
             'Validators' => array (),
+            'Cols' => 35,
+            'Rows' => 12,
         ));
         $this->addElement('text', 'dueDate', array (
             'Label' => 'Due date',

@@ -33,6 +33,22 @@ th { background: black; color: white; }
 th a.th { color: white; }
 th a.th:hover { color: #0398CA; }
 
+input[type="text"], input[type="password"], textarea {
+    width: 250px;
+    padding: 5px 15px;
+    font-size: 110%;
+}
+
+input[type="submit"] {
+    padding: 5px 15px;
+    border: 1px solid #0398CA;
+    background: #3e779d;
+    color: white;
+    font-weight: bold;
+    font-size: 110%;
+    cursor: pointer;
+}
+
 .lightBlue { color: #0398CA; }
 .darkBlue { color: #3e779d; }
 

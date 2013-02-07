@@ -14,6 +14,9 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
+require_once 'Zend/Session.php';
+Zend_Session::start();
+
 /** Zend_Application */
 require_once 'Zend/Application.php';
 
