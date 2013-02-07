@@ -1,0 +1,11 @@
+Complete your registration
+
+   Dear {{NAME}},
+   Thank you for your interest in TheiaLive. You're almost there! To
+   complete your registration, please follow following link to activate
+   your account:
+   {{LINK}}.
+
+   If you didn't register at theialive.com please ignore this message.
+
+   The TheiaLive Team

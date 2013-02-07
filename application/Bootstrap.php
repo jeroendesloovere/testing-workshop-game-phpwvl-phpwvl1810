@@ -2,7 +2,6 @@
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 {
-
     public function _initViewSetup()
     {
         // Initialize view
@@ -25,14 +24,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         // Return it, so that it can be stored by the bootstrap
         return $view;
     }
-    
-    public function _initLogSetup()
-    {
-        $logger = new Zend_Log();
-        $firebug = new Zend_Log_Writer_Firebug();
-        $logger->addWriter($firebug);
-        $logger->info('Application Environment: ' . APPLICATION_ENV);
-        Zend_Registry::set('logger', $logger);
-    }
 
 }
+

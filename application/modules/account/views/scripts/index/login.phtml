@@ -1,0 +1,11 @@
+<?php $this->headTitle('Sign in your TheiaLive account') ?>
+
+<h1>Sign in your Theialive account</h1>
+
+<?php echo $this->loginForm ?>
+
+<p><a href="<?php echo $this->url(array (
+    'module' => 'account',
+    'controller' => 'index',
+    'action' => 'forgot-password',
+), null, true) ?>" title="Forgot your password">Forgot your password</a>?</p>

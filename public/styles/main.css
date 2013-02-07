@@ -16,7 +16,25 @@ a {
     text-decoration: none; 
     color: black; 
 }
-a:hover { color: black; }
+a:link, a:visited {
+    color: #3e779d;
+}
+a:hover { color: #0398CA; }
+
+h1 { margin: 5px 0 15px; }
+
+p { margin-bottom: 15px; }
+
+table { margin: 0; padding: 0; border-collapse: collapse;}
+tr.tableHeader { height: 50px; }
+tr.odd { background: lightgrey; }
+th, td { margin: 0; border: 0; padding: 2px 15px; }
+th { background: black; color: white; }
+th a.th { color: white; }
+th a.th:hover { color: #0398CA; }
+
+.lightBlue { color: #0398CA; }
+.darkBlue { color: #3e779d; }
 
 /** general classes **/
 .rounded { 
@@ -62,7 +80,7 @@ div#logo { font-size: xx-large; width: 250px; float: left;}
 div#logo a { color: black; }
 div#logo a:hover { color: black; }
 
-div#topnav { width: 320px; float: right; text-align: right; }
+div#topnav { width: 520px; float: right; text-align: right; }
 div#topnav div.navblock { width: 80px; height: 30px; text-align: center; float: right; border: 1px solid black; margin-left: 5px; }
 div#topnav a { display: block; margin-top: 5px; }
 
@@ -78,3 +96,39 @@ div.content { padding: 15px; }
 .tw-sign-in-button:hover {
     background-position: -50 0;
 }
+
+a.form-button-action {
+    font-weight: bold;
+    padding: 2px 15px;
+    background: #0398CA;
+    color: white;
+}
+a.form-button-action:hover {
+    background: #3e779d;
+    color: white;
+}
+
+a.button-action-add {
+    background: url("/images/icons.png") repeat scroll -75px -55px transparent;
+    display: block;
+    font-size: 0;
+    height: 24px;
+    width: 16px;
+}
+
+a.button-action-edit {
+    background: url("/images/icons.png") repeat scroll -173px -592px transparent;
+    display: block;
+    font-size: 0;
+    height: 16px;
+    width: 16px;
+}
+
+ul.errors {
+    list-style: none;
+    background: orangered;
+    color: white;
+    padding: 5px;
+    border: 1px solid maroon;
+}
+ul.errors li { padding: 2px 5px; }

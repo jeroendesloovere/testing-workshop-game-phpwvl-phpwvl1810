@@ -1,47 +1,34 @@
 <?php
-/**
- * TheiaLive
- * 
- * @copyright In2it vof (c) 2012. All rights reserved
- * @link http://in2it.be
- */
-/**
- * Account_Form_Login
- * 
- * @package Account_Form
- * @category Login
- */
+
 class Account_Form_Login extends Zend_Form
 {
 
     public function init()
     {
         $this->addElement('text', 'email', array (
-            'Label' => 'Your email address',
+            'Label' => 'Your e-mail address',
             'Required' => true,
-            'Filters' => array (
-                'StringToLower',
-                'StripTags',
+            'Filter' => array (
                 'StringTrim',
+                'StripTags',
+                'StringToLower',
             ),
             'Validators' => array (
                 'EmailAddress',
-                array ('StringLength', null, array ('min' => 5, 'max' => 150)),
-            )
+                array ('StringLength', false, array ('min' => 5, 'max' => 150)),
+            ),
         ));
         $this->addElement('password', 'password', array (
             'Label' => 'Your password',
             'Required' => true,
             'Filters' => array (),
-            'Validators' => array (
-                array ('StringLength', null, array ('min' => 8)),
-            ),
+            'Validators' => array (),
         ));
-        $this->addElement('submit', 'login', array (
-            'Label' => 'Login',
+        $this->addElement('submit', 'signin', array (
+            'Label' => 'Sign in',
             'Ignore' => true,
         ));
-        $this->addElement('hash','token');
+        $this->addElement('hash', 'token');
     }
 
 

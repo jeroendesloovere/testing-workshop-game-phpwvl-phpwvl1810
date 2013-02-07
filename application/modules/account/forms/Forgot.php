@@ -1,36 +1,25 @@
 <?php
-/**
- * TheiaLive
- * 
- * @copyright In2it vof (c) 2012. All rights reserved
- * @link http://in2it.be
- */
-/**
- * Account_Form_Forgot
- * 
- * @package Account_Form
- * @category Forgot
- */
+
 class Account_Form_Forgot extends Zend_Form
 {
 
     public function init()
     {
         $this->addElement('text', 'email', array (
-            'Label' => 'Your email address',
+            'Label' => 'Your e-mail address',
             'Required' => true,
             'Filters' => array (
                 'StringTrim',
                 'StripTags',
-                'StringToLower',
+                'StringToLower'
             ),
             'Validators' => array (
                 'EmailAddress',
                 array ('StringLength', false, array ('min' => 5, 'max' => 150)),
             ),
         ));
-        $this->addElement('submit', 'reset', array (
-            'Label' => 'Reset password',
+        $this->addElement('submit', 'request', array (
+            'Label' => 'Send request',
             'Ignore' => true,
         ));
         $this->addElement('hash', 'token');

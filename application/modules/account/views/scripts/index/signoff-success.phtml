@@ -1,0 +1,11 @@
+<?php $this->headTitle('Signed out') ?>
+
+<h1>Signed out</h1>
+<p>You're successfully signed out of your TheiaLive account. If you wish to
+    proceed, you need to <a href="<?php echo $this->url(array (
+        'module' => 'account',
+        'controller' => 'index',
+        'action' => 'login',
+    ), null, true) ?>" title="Sign in">sign in</a> again.</p>
+
+<p>The TheiaLive Team</p>

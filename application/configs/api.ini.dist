@@ -1,5 +1,0 @@
-[twitter]
-twitter.callbackUrl = http://example.com./twitter/callback
-twitter.siteUrl = http://twitter.com/oauth
-twitter.consumerKey = 
-twitter.consumerSecret = 

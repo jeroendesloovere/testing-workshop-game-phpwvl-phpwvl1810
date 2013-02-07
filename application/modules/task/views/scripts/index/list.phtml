@@ -1,0 +1,43 @@
+<?php $this->headTitle('Listing projects') ?>
+
+<h1>Listing tasks</h1>
+
+<?php if (0 === count($this->taskCollection)): ?>
+<p>Currently no tasks assigned. <a href="<?php echo $this->url(array (
+    'module' => 'task',
+    'controller' => 'index',
+    'action' => 'edit',
+    'projectId' => $this->projectId,
+    'taskId' => 0,
+), null, true) ?>" title="Add a task now">Add a task now</a>.</p>
+<?php else: ?>
+<table>
+    <tr class="tableHeader">
+        <th>Task name</th>
+        <th>Last modified</th>
+        <th>Due date</th>
+        <th><a class="action-add" href="<?php echo $this->url(array (
+    'module' => 'task',
+    'controller' => 'index',
+    'action' => 'edit',
+    'projectId' => $this->projectId,
+), null, true) ?>" title="Add a new task">[ADD]</a></th>
+    </tr>
+    <?php $rowCount = 0; ?>
+    <?php foreach ($this->taskCollection as $task): ?>
+    <tr class="<?php echo (0 === $rowCount % 2 ? 'even' : 'odd') ?>">
+        <td><?php echo $this->escape($task->getTitle()) ?></a></td>
+        <td><?php echo $this->escape($task->getModified()->format('Y-m-d H:i:s')) ?></td>
+        <td><?php echo $this->escape($task->getDueDate()->format('Y-m-d')) ?></td>
+        <td><a class="action-edit" href="<?php echo $this->url(array (
+    'module' => 'task',
+    'controller' => 'index',
+    'action' => 'edit',
+    'projectId' => $this->projectId,
+    'taskId' => $task->getId(),
+), null, true) ?>" title="Edit this task">[EDIT]</a></td>
+    </tr>
+    <?php $rowCount++ ?>
+    <?php endforeach; ?>
+</table>
+<?php endif; ?>

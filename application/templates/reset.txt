@@ -1,0 +1,11 @@
+Complete recovering your password
+
+   Dear {{NAME}},
+   You have requested to reset your password, in order to do so we need to
+   validate you made the request. To continue, please follow this link
+   {{LINK}}. This allows you to provide a new password.
+
+   If you didn't requested to reset your password at theialive.com please
+   ignore this message. Nothing will happen to your account.
+
+   The TheiaLive Team

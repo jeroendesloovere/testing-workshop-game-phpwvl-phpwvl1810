@@ -1,7 +1,13 @@
 <div class="navblock"><a href="<?php echo $this->url(array (
+    'module' => 'default', 
+    'controller' => 'index', 
+    'action' => 'contact'
+), null, true) ?>"><?php echo $this->translate('contact us') ?></a></div>
+
+<div class="navblock"><a href="<?php echo $this->url(array (
     'module' => 'account', 
-    'controller' => 'auth', 
-    'action' => 'logout'
+    'controller' => 'index', 
+    'action' => 'signoff'
 ), null, true) ?>"><?php echo $this->translate('sign off') ?></a></div>
 
 <div class="navblock"><a href="<?php echo $this->url(array (
@@ -10,8 +16,10 @@
     'action' => 'index'
 ), null, true) ?>"><?php echo $this->translate('projects') ?></a></div>
 
+<?php /*
 <div class="navblock"><a href="<?php echo $this->url(array (
     'module' => 'account', 
     'controller' => 'index', 
     'action' => 'index'
 ), null, true) ?>"><?php echo $this->translate('account') ?></a></div>
+ */?>

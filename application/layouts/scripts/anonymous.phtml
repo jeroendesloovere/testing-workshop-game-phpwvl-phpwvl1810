@@ -1,11 +1,17 @@
 <div class="navblock"><a href="<?php echo $this->url(array (
+    'module' => 'default', 
+    'controller' => 'index', 
+    'action' => 'contact'
+), null, true) ?>"><?php echo $this->translate('contact us') ?></a></div>
+
+<div class="navblock"><a href="<?php echo $this->url(array (
     'module' => 'account', 
-    'controller' => 'auth', 
-    'action' => 'index'
+    'controller' => 'index', 
+    'action' => 'login'
 ), null, true) ?>"><?php echo $this->translate('login') ?></a></div>
 
 <div class="navblock"><a href="<?php echo $this->url(array (
     'module' => 'account', 
-    'controller' => 'auth', 
+    'controller' => 'index', 
     'action' => 'signup'
 ), null, true) ?>"><?php echo $this->translate('sign up') ?></a></div>

@@ -1,34 +1,21 @@
 <?php
-/**
- * TheiaLive
- * 
- * @copyright In2it vof (c) 2012. All rights reserved
- * @link http://in2it.be
- */
-/**
- * Account_Form_NewPassword
- * 
- * @package Account_Form
- * @category NewPassword
- */
+
 class Account_Form_NewPassword extends Zend_Form
 {
+
     public function init()
     {
         $this->addElement('password', 'password', array (
             'Label' => 'Enter your new password',
             'Required' => true,
             'Filters' => array (),
-            'Validators' => array (
-                array ('StringLength', false, array ('min' => 8)),
-            ),
+            'Validators' => array (),
         ));
         $this->addElement('password', 'verify', array (
-            'Label' => 'Verify your new password',
+            'Label' => 'Verify entered password',
             'Required' => true,
             'Filters' => array (),
             'Validators' => array (
-                array ('StringLength', false, array ('min' => 8)),
                 array ('Identical', false, array ('token' => 'password')),
             ),
         ));
@@ -36,7 +23,28 @@ class Account_Form_NewPassword extends Zend_Form
             'Label' => 'Save new password',
             'Ignore' => true,
         ));
-        $this->addElement('hidden', 'token');
+        $this->addElement('hidden', 'email', array (
+            'Filters' => array (
+                'StringTrim',
+                'StripTags',
+                'StringToLower',
+            ),
+            'Validators' => array (
+                'EmailAddress',
+                array ('StringLength', false, array ('min' => 5, 'max' => 150)),
+            ),
+        ));
+        $this->addElement('hidden', 'token', array (
+            'Filters' => array (
+                'StringTrim',
+                'StripTags',
+                'StringToLower',
+            ),
+            'Validators' => array (
+                'Alnum',
+                array ('StringLength', false, array ('min' => 40, 'max' => 40)),
+            ),
+        ));
         $this->addElement('hash', 'hash');
     }
 

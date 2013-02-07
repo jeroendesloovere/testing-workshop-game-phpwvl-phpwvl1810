@@ -9,146 +9,212 @@
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="contact"/>
+          <actionMethod actionName="submit"/>
+          <actionMethod actionName="success"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
       </controllersDirectory>
-      <formsDirectory enabled="false"/>
+      <formsDirectory>
+        <formFile formName="Contact"/>
+      </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
           <layoutScriptFile layoutName="layout"/>
         </layoutScriptsDirectory>
       </layoutsDirectory>
-      <modelsDirectory>
-        <dbTableDirectory>
-          <dbTableFile dbTableName="Account"/>
-          <dbTableFile dbTableName="Group"/>
-          <dbTableFile dbTableName="GroupAccount"/>
-          <dbTableFile dbTableName="GroupProject"/>
-          <dbTableFile dbTableName="Project"/>
-          <dbTableFile dbTableName="ProjectTask"/>
-          <dbTableFile dbTableName="Task"/>
-          <dbTableFile dbTableName="TaskAccount"/>
-        </dbTableDirectory>
-        <modelFile modelName="Account"/>
-        <modelFile modelName="AccountMapper"/>
-        <modelFile modelName="AccountCollection"/>
-        <modelFile modelName="Group"/>
-        <modelFile modelName="Project"/>
-        <modelFile modelName="Task"/>
-        <modelFile modelName="GroupMapper"/>
-        <modelFile modelName="ProjectMapper"/>
-        <modelFile modelName="TaskMapper"/>
-        <modelFile modelName="Abastract"/>
-        <modelFile modelName="Auth"/>
-        <modelFile modelName="GroupAccount"/>
-        <modelFile modelName="GroupAccountMapper"/>
-      </modelsDirectory>
+      <modelsDirectory/>
       <modulesDirectory>
         <moduleDirectory moduleName="account">
           <configsDirectory enabled="false"/>
           <controllersDirectory>
             <controllerFile controllerName="Index">
               <actionMethod actionName="index"/>
-            </controllerFile>
-            <controllerFile controllerName="Twitter">
-              <actionMethod actionName="index"/>
-              <actionMethod actionName="callback"/>
-              <actionMethod actionName="authenticate"/>
-            </controllerFile>
-            <controllerFile controllerName="Auth">
-              <actionMethod actionName="index"/>
-              <actionMethod actionName="login"/>
-              <actionMethod actionName="logout"/>
               <actionMethod actionName="signup"/>
               <actionMethod actionName="register"/>
-              <actionMethod actionName="confirmation"/>
-              <actionMethod actionName="verify"/>
-              <actionMethod actionName="forgot"/>
-              <actionMethod actionName="reset"/>
-              <actionMethod actionName="newPassword"/>
+              <actionMethod actionName="login"/>
+              <actionMethod actionName="authenticate"/>
+              <actionMethod actionName="forgotPassword"/>
               <actionMethod actionName="resetPassword"/>
-              <actionMethod actionName="invalidToken"/>
+              <actionMethod actionName="confirmSignup"/>
+              <actionMethod actionName="registrationSuccess"/>
+              <actionMethod actionName="invalidSignup"/>
+              <actionMethod actionName="signoff"/>
+              <actionMethod actionName="signoffSuccess"/>
+              <actionMethod actionName="resetSuccess"/>
+              <actionMethod actionName="newPassword"/>
+              <actionMethod actionName="invalidRequest"/>
+              <actionMethod actionName="savePassword"/>
+              <actionMethod actionName="verifyToken"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory>
-            <formFile formName="Login"/>
-            <formFile formName="Signup"/>
+            <formFile formName="Register"/>
             <formFile formName="Forgot"/>
             <formFile formName="NewPassword"/>
+            <formFile formName="Login"/>
+            <formFile formName="NewPassword"/>
           </formsDirectory>
-          <layoutsDirectory enabled="false">
-            <layoutScriptsDirectory enabled="false"/>
-          </layoutsDirectory>
-          <modelsDirectory/>
+          <layoutsDirectory enabled="false"/>
+          <modelsDirectory>
+            <modelFile modelName="Account"/>
+            <modelFile modelName="AccountMapper"/>
+            <dbTableDirectory>
+              <dbTableFile dbTableName="Account"/>
+            </dbTableDirectory>
+          </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>
             <viewScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Index">
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Twitter">
-                <viewScriptFile forActionName="index"/>
-              </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Twitter">
-                <viewScriptFile forActionName="callback"/>
-              </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Twitter">
-                <viewScriptFile forActionName="authenticate"/>
-              </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
-                <viewScriptFile forActionName="index"/>
-              </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
-                <viewScriptFile forActionName="login"/>
-              </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
-                <viewScriptFile forActionName="logout"/>
-              </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
+              <viewControllerScriptsDirectory forControllerName="Index">
                 <viewScriptFile forActionName="signup"/>
               </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
+              <viewControllerScriptsDirectory forControllerName="Index">
                 <viewScriptFile forActionName="register"/>
               </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
-                <viewScriptFile forActionName="confirmation"/>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="login"/>
               </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
-                <viewScriptFile forActionName="verify"/>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="authenticate"/>
               </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
-                <viewScriptFile forActionName="forgot"/>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="forgotPassword"/>
               </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
-                <viewScriptFile forActionName="reset"/>
-              </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
-                <viewScriptFile forActionName="newPassword"/>
-              </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
+              <viewControllerScriptsDirectory forControllerName="Index">
                 <viewScriptFile forActionName="resetPassword"/>
               </viewControllerScriptsDirectory>
-              <viewControllerScriptsDirectory forControllerName="Auth">
-                <viewScriptFile forActionName="invalidToken"/>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="confirmSignup"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="registrationSuccess"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="invalidSignup"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="signoff"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="signoffSuccess"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="resetSuccess"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="newPassword"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="invalidRequest"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="savePassword"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="verifyToken"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
           </viewsDirectory>
         </moduleDirectory>
-        <moduleDirectory moduleName="group">
+        <moduleDirectory moduleName="task">
           <configsDirectory enabled="false"/>
-          <controllersDirectory/>
-          <formsDirectory enabled="false"/>
+          <controllersDirectory>
+            <controllerFile controllerName="Index">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="list"/>
+              <actionMethod actionName="edit"/>
+              <actionMethod actionName="save"/>
+              <actionMethod actionName="remove"/>
+            </controllerFile>
+          </controllersDirectory>
+          <formsDirectory>
+            <formFile formName="Task"/>
+          </formsDirectory>
           <layoutsDirectory enabled="false">
             <layoutScriptsDirectory enabled="false"/>
           </layoutsDirectory>
           <modelsDirectory>
-            <dbTableDirectory enabled="false"/>
+            <modelFile modelName="Task"/>
+            <modelFile modelName="TaskMapper"/>
+            <dbTableDirectory>
+              <dbTableFile dbTableName="Task"/>
+            </dbTableDirectory>
+            <modelFile modelName="TaskCollection"/>
           </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>
-            <viewScriptsDirectory/>
+            <viewScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="list"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="edit"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="save"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="remove"/>
+              </viewControllerScriptsDirectory>
+            </viewScriptsDirectory>
+            <viewHelpersDirectory/>
+            <viewFiltersDirectory/>
+          </viewsDirectory>
+        </moduleDirectory>
+        <moduleDirectory moduleName="project">
+          <configsDirectory enabled="false"/>
+          <controllersDirectory>
+            <controllerFile controllerName="Index">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="list"/>
+              <actionMethod actionName="edit"/>
+              <actionMethod actionName="save"/>
+              <actionMethod actionName="remove"/>
+            </controllerFile>
+          </controllersDirectory>
+          <formsDirectory>
+            <formFile formName="Project"/>
+            <formFile formName="Project"/>
+          </formsDirectory>
+          <layoutsDirectory enabled="false">
+            <layoutScriptsDirectory enabled="false"/>
+          </layoutsDirectory>
+          <modelsDirectory>
+            <modelFile modelName="Project"/>
+            <modelFile modelName="ProjectMapper"/>
+            <dbTableDirectory>
+              <dbTableFile dbTableName="Project"/>
+            </dbTableDirectory>
+            <modelFile modelName="ProjectCollection"/>
+          </modelsDirectory>
+          <servicesDirectory enabled="false"/>
+          <viewsDirectory>
+            <viewScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="list"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="edit"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="save"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="remove"/>
+              </viewControllerScriptsDirectory>
+            </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
           </viewsDirectory>
@@ -162,6 +228,15 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Error">
             <viewScriptFile forActionName="error"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="contact"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="submit"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="success"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -199,6 +274,9 @@
         <testApplicationControllerDirectory>
           <testApplicationControllerFile forControllerName="Index">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="contact"/>
+            <testApplicationActionMethod forActionName="submit"/>
+            <testApplicationActionMethod forActionName="success"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
         <testApplicationModulesDirectory>
@@ -206,25 +284,44 @@
             <testApplicationControllerDirectory>
               <testApplicationControllerFile forControllerName="Index">
                 <testApplicationActionMethod forActionName="index"/>
-              </testApplicationControllerFile>
-              <testApplicationControllerFile forControllerName="Twitter">
-                <testApplicationActionMethod forActionName="index"/>
-                <testApplicationActionMethod forActionName="callback"/>
-                <testApplicationActionMethod forActionName="authenticate"/>
-              </testApplicationControllerFile>
-              <testApplicationControllerFile forControllerName="Auth">
-                <testApplicationActionMethod forActionName="index"/>
-                <testApplicationActionMethod forActionName="login"/>
-                <testApplicationActionMethod forActionName="logout"/>
                 <testApplicationActionMethod forActionName="signup"/>
                 <testApplicationActionMethod forActionName="register"/>
-                <testApplicationActionMethod forActionName="confirmation"/>
-                <testApplicationActionMethod forActionName="verify"/>
-                <testApplicationActionMethod forActionName="forgot"/>
-                <testApplicationActionMethod forActionName="reset"/>
-                <testApplicationActionMethod forActionName="newPassword"/>
+                <testApplicationActionMethod forActionName="login"/>
+                <testApplicationActionMethod forActionName="authenticate"/>
+                <testApplicationActionMethod forActionName="forgotPassword"/>
                 <testApplicationActionMethod forActionName="resetPassword"/>
-                <testApplicationActionMethod forActionName="invalidToken"/>
+                <testApplicationActionMethod forActionName="confirmSignup"/>
+                <testApplicationActionMethod forActionName="registrationSuccess"/>
+                <testApplicationActionMethod forActionName="invalidSignup"/>
+                <testApplicationActionMethod forActionName="signoff"/>
+                <testApplicationActionMethod forActionName="signoffSuccess"/>
+                <testApplicationActionMethod forActionName="resetSuccess"/>
+                <testApplicationActionMethod forActionName="newPassword"/>
+                <testApplicationActionMethod forActionName="invalidRequest"/>
+                <testApplicationActionMethod forActionName="savePassword"/>
+                <testApplicationActionMethod forActionName="verifyToken"/>
+              </testApplicationControllerFile>
+            </testApplicationControllerDirectory>
+          </testApplicationModuleDirectory>
+          <testApplicationModuleDirectory forModuleName="project">
+            <testApplicationControllerDirectory>
+              <testApplicationControllerFile forControllerName="Index">
+                <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="list"/>
+                <testApplicationActionMethod forActionName="edit"/>
+                <testApplicationActionMethod forActionName="save"/>
+                <testApplicationActionMethod forActionName="remove"/>
+              </testApplicationControllerFile>
+            </testApplicationControllerDirectory>
+          </testApplicationModuleDirectory>
+          <testApplicationModuleDirectory forModuleName="task">
+            <testApplicationControllerDirectory>
+              <testApplicationControllerFile forControllerName="Index">
+                <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="list"/>
+                <testApplicationActionMethod forActionName="edit"/>
+                <testApplicationActionMethod forActionName="save"/>
+                <testApplicationActionMethod forActionName="remove"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

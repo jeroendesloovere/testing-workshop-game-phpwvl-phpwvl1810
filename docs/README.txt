@@ -14,13 +14,13 @@ Setting Up Your VHOST
 The following is a sample VHOST you might want to consider for your project.
 
 <VirtualHost *:80>
-   DocumentRoot "/Users/dragonbe/workspace/theialive/public"
-   ServerName theialive.local
+   DocumentRoot "/Users/dragonbe/workspace/training/public"
+   ServerName training.local
 
    # This should be omitted in the production environment
    SetEnv APPLICATION_ENV development
 
-   <Directory "/Users/dragonbe/workspace/theialive/public">
+   <Directory "/Users/dragonbe/workspace/training/public">
        Options Indexes MultiViews FollowSymLinks
        AllowOverride All
        Order allow,deny
