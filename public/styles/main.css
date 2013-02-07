@@ -97,7 +97,7 @@ div#logo a { color: black; }
 div#logo a:hover { color: black; }
 
 div#topnav { width: 520px; float: right; text-align: right; }
-div#topnav div.navblock { width: 80px; height: 30px; text-align: center; float: right; border: 1px solid black; margin-left: 5px; }
+div#topnav div.navblock { width: 110px; height: 30px; text-align: center; float: right; border: 1px solid black; margin-left: 5px; }
 div#topnav a { display: block; margin-top: 5px; }
 
 div.content { padding: 15px; }
