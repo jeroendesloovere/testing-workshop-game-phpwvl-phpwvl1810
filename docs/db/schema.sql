@@ -38,3 +38,14 @@ CREATE TABLE `task` (
     PRIMARY KEY (`taskId`),
     INDEX `task_title_idx` (`title`)
 );
+
+DROP TABLE IF EXISTS `session`;
+CREATE TABLE `session` (
+  `sessionId` char(32) NOT NULL,
+  `savePath` varchar(150) NOT NULL,
+  `name` varchar(150) NOT NULL DEFAULT '',
+  `modified` int(10) unsigned DEFAULT NULL,
+  `lifetime` int(10) unsigned DEFAULT NULL,
+  `data` text,
+  PRIMARY KEY (`sessionId`,`savePath`,`name`)
+);
