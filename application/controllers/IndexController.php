@@ -25,6 +25,13 @@ class IndexController extends Zend_Controller_Action
             ), null, true),
         ));
         
+        if (Zend_Auth::getInstance()->hasIdentity()) {
+            $identity = Zend_Auth::getInstance()->getIdentity();
+            $account = unserialize($identity);
+            $form->getElement('name')->setValue($account->getFirstName() . ' ' . $account->getLastName());
+            $form->getElement('email')->setValue($account->getEmail());
+        }
+        
         if (isset ($this->_session->contactForm)) {
             $form = unserialize($this->_session->contactForm);
             unset ($this->_session->contactForm);
