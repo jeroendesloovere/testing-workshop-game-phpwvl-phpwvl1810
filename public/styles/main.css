@@ -148,3 +148,4 @@ ul.errors {
     border: 1px solid maroon;
 }
 ul.errors li { padding: 2px 5px; }
+p.intro { font-size: 110%; }
