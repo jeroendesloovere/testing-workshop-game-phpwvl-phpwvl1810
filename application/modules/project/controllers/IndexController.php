@@ -22,7 +22,7 @@ class Project_IndexController extends Zend_Controller_Action
         $projectCollection = new Project_Model_Collection();
         $projectMapper = new Project_Model_ProjectMapper();
         $projectMapper->fetchAll($projectCollection, 'Project_Model_Project', array (
-            'accountId' => $account->getId(),
+            'accountId = ?' => $account->getId(),
         ));
         $this->view->projectCollection = $projectCollection;
     }

@@ -238,6 +238,12 @@ class Account_IndexController extends Zend_Controller_Action
             return $this->_helper->redirector('forgot-password', 'index', 'account');
         }
         
+        if (false === $account->isActive()) {
+            $form->getElement('email')->addError('Please activate your account before resetting your password');
+            $this->_session->forgot = serialize($form);
+            return $this->_helper->redirector('forgot-password', 'index', 'account');
+        }
+        
         $account->setToken(Account_Model_Account::generateToken());
         $account->setReset(true);
         $accountMapper->save($account);
@@ -293,7 +299,7 @@ class Account_IndexController extends Zend_Controller_Action
             return $this->_helper->redirector('invalid-request', 'index', 'account');
         }
         $this->_session->tokenCheck = array ('email' => $email, 'token' => $token);
-        return $this->_redirect('new-password', 'index', 'account');
+        return $this->_helper->redirector('new-password', 'index', 'account');
     }
 
     public function newPasswordAction()
@@ -306,8 +312,9 @@ class Account_IndexController extends Zend_Controller_Action
                 'action' => 'save-password',
             )),
         ));
-        $form->getElement('email')->setValue($email);
-        $form->getElement('token')->setValue($token);
+        $check = $this->_session->tokenCheck;
+        $form->getElement('email')->setValue($check['email']);
+        $form->getElement('token')->setValue($check['token']);
         
         if (isset ($this->_session->password)) {
             $form = unserialize($this->_session->password);
@@ -339,6 +346,27 @@ class Account_IndexController extends Zend_Controller_Action
                 'token' => $form->getElement('token')->getValue(),
             ));
         }
+        
+        $account = new Account_Model_Account();
+        $accountMapper = new Account_Model_AccountMapper();
+        $accountMapper->fetchRow($account, array (
+            'email = ?' => $form->getElement('email')->getValue(),
+            'token = ?' => $form->getElement('token')->getValue(),
+        ));
+        if (0 === (int) $account->getId()) {
+            $form->getElement('password')->addError('Password wasn\'t validated');
+            $this->_session->password = serialize($form);
+            return $this->_helper->redirector('forgot-password', 'index', 'account', array (
+                'email' => $form->getElement('email')->getValue(),
+                'token' => $form->getElement('token')->getValue(),
+            ));
+        }
+        $account->setPassword(Account_Model_Account::generatePasswordHash(
+            $form->getElement('password')->getValue()));
+        $account->setToken(null);
+        $accountMapper->save($account);
+        
+        return $this->_helper->redirector('login', 'index', 'account');
     }
 
     public function signoffAction()
