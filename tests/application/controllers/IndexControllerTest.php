@@ -11,21 +11,21 @@ class IndexControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'Index', 'module' => 'default');
+        $params = array('action' => 'index', 'controller' => 'index', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
-        
+
         // assertions
         $this->assertModule($urlParams['module']);
         $this->assertController($urlParams['controller']);
         $this->assertAction($urlParams['action']);
-        $this->assertQueryContentContains("div#welcome h3", "This is your project's main page");
+        $this->assertQueryContentContains('h1', 'Watch and learn');
     }
 
     public function testContactAction()
     {
-        $params = array('action' => 'contact', 'controller' => 'Index', 'module' => 'default');
+        $params = array('action' => 'contact', 'controller' => 'index', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -34,47 +34,39 @@ class IndexControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $this->assertModule($urlParams['module']);
         $this->assertController($urlParams['controller']);
         $this->assertAction($urlParams['action']);
-        $this->assertQueryContentContains(
-            'div#view-content p',
-            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
-            );
+        $this->assertQueryContentContains('h1', 'Contact us');
     }
 
     public function testSubmitAction()
     {
-        $params = array('action' => 'submit', 'controller' => 'Index', 'module' => 'default');
+        $params = array('action' => 'submit', 'controller' => 'index', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
-        
-        // assertions
-        $this->assertModule($urlParams['module']);
-        $this->assertController($urlParams['controller']);
-        $this->assertAction($urlParams['action']);
-        $this->assertQueryContentContains(
-            'div#view-content p',
-            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
-            );
+
+        $this->assertRedirect('Expected redirect not triggered');
+
+        $redirectUrlParams = $this->urlizeOptions(array (
+            'action' => 'contact', 'controller' => 'index', 'module' => 'default',
+        ));
+        $redirectUrl = $this->url($redirectUrlParams);
+        $this->assertRedirectTo($redirectUrl, 'No redirection to ' . $redirectUrl);
     }
 
     public function testSuccessAction()
     {
-        $params = array('action' => 'success', 'controller' => 'Index', 'module' => 'default');
+        $params = array('action' => 'success', 'controller' => 'index', 'module' => 'default');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
-        
+
         // assertions
         $this->assertModule($urlParams['module']);
         $this->assertController($urlParams['controller']);
         $this->assertAction($urlParams['action']);
-        $this->assertQueryContentContains(
-            'div#view-content p',
-            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
-            );
+
+        $this->assertQueryContentContains('h1', 'We will contact you');
     }
-
-
 }
 
 

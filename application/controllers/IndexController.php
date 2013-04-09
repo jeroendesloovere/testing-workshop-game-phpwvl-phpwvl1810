@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Class IndexController
+ *
+ * @category TheiaLive
+ * @package Default
+ */
 class IndexController extends Zend_Controller_Action
 {
     protected $_session;

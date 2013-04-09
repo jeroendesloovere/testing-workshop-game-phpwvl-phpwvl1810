@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Class ErrorController
+ *
+ * @category TheiaLive
+ * @package Default
+ */
 class ErrorController extends Zend_Controller_Action
 {
 

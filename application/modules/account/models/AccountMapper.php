@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Class Account_Model_AccountMapper
+ *
+ * @category TheiaLive
+ * @package Account
+ */
 class Account_Model_AccountMapper extends In2it_Model_Mapper
 {
     public function getDbTable()

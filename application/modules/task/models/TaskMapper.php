@@ -9,7 +9,7 @@ class Task_Model_TaskMapper extends In2it_Model_Mapper
         }
         return parent::getDbTable();
     }
-    public function save($task)
+    public function save(In2it_Model_Model $task)
     {
         if (0 < $task->getId()) {
             $this->getDbTable()->update($task->toArray(), array (

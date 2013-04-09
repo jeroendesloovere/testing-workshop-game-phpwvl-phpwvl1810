@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Class Account_Form_Login
+ *
+ * @category TheiaLive
+ * @package Account
+ */
 class Account_Form_Login extends Zend_Form
 {
 

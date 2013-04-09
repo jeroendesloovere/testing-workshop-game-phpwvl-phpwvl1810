@@ -18,7 +18,7 @@ class Project_IndexController extends Zend_Controller_Action
     {
         $identity = Zend_Auth::getInstance()->getIdentity();
         $account = unserialize($identity);
-        
+
         $projectCollection = new Project_Model_Collection();
         $projectMapper = new Project_Model_ProjectMapper();
         $projectMapper->fetchAll($projectCollection, 'Project_Model_Project', array (

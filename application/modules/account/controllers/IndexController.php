@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Class Account_IndexController
+ *
+ * @category TheiaLive
+ * @package Account
+ */
 class Account_IndexController extends Zend_Controller_Action
 {
 
@@ -304,6 +309,9 @@ class Account_IndexController extends Zend_Controller_Action
 
     public function newPasswordAction()
     {
+        if (!isset ($this->_session->tokenCheck)) {
+            return $this->_helper->redirector('new-password', 'index', 'account');
+        }
         $form = new Account_Form_NewPassword(array (
             'method' => 'post',
             'action' => $this->view->url(array (

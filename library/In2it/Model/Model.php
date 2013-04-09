@@ -66,5 +66,22 @@ abstract class In2it_Model_Model implements In2it_Model_Interface
             }
         }
     }
+    /**
+     * Allows you to set values in a safe way
+     *
+     * @param ArrayObject|Zend_Db_Row $row
+     * @param string $property
+     * @param string $method
+     * @return In2it_Model_Model
+     */
+    protected function _safeSetValues($row, $property, $method)
+    {
+        if (method_exists($this, $method)) {
+            if (isset ($row->$property)) {
+                $this->$method($row->$property);
+            }
+        }
+        return $this;
+    }
     
 }

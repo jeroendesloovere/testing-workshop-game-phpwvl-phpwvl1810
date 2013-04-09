@@ -1,20 +1,59 @@
 <?php
-
+/**
+ * Class Account_Model_Account
+ *
+ * @category TheiaLive
+ * @package Account
+ */
 class Account_Model_Account extends In2it_Model_Model
 {
     const ACCOUNT_SALT = 'You can do it, Ice Cube';
-    
+    /**
+     * @var int Sequence ID of the Account
+     */
     protected $_accountId;
+    /**
+     * @var string The first name for this Account
+     */
     protected $_firstName;
+    /**
+     * @var string The last name for this Account
+     */
     protected $_lastName;
+    /**
+     * @var string The email address for this Account
+     */
     protected $_email;
+    /**
+     * @var string The password for this Account
+     */
     protected $_password;
+    /**
+     * @var string The token used to reset and activate this Account
+     */
     protected $_token;
+    /**
+     * @var bool Flag for active status of this Account
+     */
     protected $_active;
+    /**
+     * @var bool Flag for reset status of this Account
+     */
     protected $_reset;
+    /**
+     * @var DateTime The creation date of this Account
+     */
     protected $_created;
+    /**
+     * @var DateTime The modification date of this Account
+     */
     protected $_modified;
-    
+
+    /**
+     * Constructor for this account
+     *
+     * @param null|array|Zend_Db_Row $params
+     */
     public function __construct($params = null)
     {
         $this->setActive(false);

@@ -1,4 +1,4 @@
-<?php $this->headTitle('Listing projects') ?>
+<?php $this->headTitle('Listing tasks') ?>
 
 <h1>Listing tasks</h1>
 
@@ -14,6 +14,7 @@
 <table>
     <tr class="tableHeader">
         <th>Task name</th>
+        <th>Assigned</th>
         <th>Last modified</th>
         <th>Due date</th>
         <th><a class="action-add" href="<?php echo $this->url(array (
@@ -25,8 +26,9 @@
     </tr>
     <?php $rowCount = 0; ?>
     <?php foreach ($this->taskCollection as $task): ?>
-    <tr class="<?php echo (0 === $rowCount % 2 ? 'even' : 'odd') ?>">
+    <tr class="tableRow <?php echo (0 === $rowCount % 2 ? 'even' : 'odd') ?>">
         <td><?php echo $this->escape($task->getTitle()) ?></a></td>
+        <td><?php echo $this->escape($task->getAssigned()->getFirstName()) ?></td>
         <td><?php echo $this->escape($task->getModified()->format('Y-m-d H:i:s')) ?></td>
         <td><?php echo $this->escape($task->getDueDate()->format('Y-m-d')) ?></td>
         <td><a class="action-edit" href="<?php echo $this->url(array (

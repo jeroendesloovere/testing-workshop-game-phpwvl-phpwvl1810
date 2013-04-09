@@ -146,6 +146,7 @@
               <dbTableFile dbTableName="Task"/>
             </dbTableDirectory>
             <modelFile modelName="TaskCollection"/>
+            <modelFile modelName="TaskDecorator"/>
           </modelsDirectory>
           <servicesDirectory enabled="false"/>
           <viewsDirectory>
@@ -213,6 +214,38 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Index">
                 <viewScriptFile forActionName="remove"/>
+              </viewControllerScriptsDirectory>
+            </viewScriptsDirectory>
+            <viewHelpersDirectory/>
+            <viewFiltersDirectory/>
+          </viewsDirectory>
+        </moduleDirectory>
+        <moduleDirectory moduleName="team">
+          <configsDirectory enabled="false"/>
+          <controllersDirectory>
+            <controllerFile controllerName="Index">
+              <actionMethod actionName="index"/>
+            </controllerFile>
+          </controllersDirectory>
+          <formsDirectory enabled="false"/>
+          <layoutsDirectory enabled="false">
+            <layoutScriptsDirectory enabled="false"/>
+          </layoutsDirectory>
+          <modelsDirectory>
+            <modelFile modelName="Team"/>
+            <modelFile modelName="TeamMapper"/>
+            <modelFile modelName="TeamAccount"/>
+            <modelFile modelName="TeamAccountMapper"/>
+            <dbTableDirectory>
+              <dbTableFile dbTableName="Team"/>
+              <dbTableFile dbTableName="TeamAccount"/>
+            </dbTableDirectory>
+          </modelsDirectory>
+          <servicesDirectory enabled="false"/>
+          <viewsDirectory>
+            <viewScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -322,6 +355,13 @@
                 <testApplicationActionMethod forActionName="edit"/>
                 <testApplicationActionMethod forActionName="save"/>
                 <testApplicationActionMethod forActionName="remove"/>
+              </testApplicationControllerFile>
+            </testApplicationControllerDirectory>
+          </testApplicationModuleDirectory>
+          <testApplicationModuleDirectory forModuleName="team">
+            <testApplicationControllerDirectory>
+              <testApplicationControllerFile forControllerName="Index">
+                <testApplicationActionMethod forActionName="index"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

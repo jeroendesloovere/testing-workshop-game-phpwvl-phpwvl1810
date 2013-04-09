@@ -39,6 +39,24 @@ CREATE TABLE `task` (
     INDEX `task_title_idx` (`title`)
 );
 
+DROP TABLE IF EXISTS `team`;
+CREATE TABLE `team` (
+    `teamId` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(50) NULL,
+    `description` TEXT NULL,
+    `created` TIMESTAMP NOT NULL,
+    `modified` TIMESTAMP NOT NULL,
+    PRIMARY KEY (`teamId`),
+    INDEX `team_name_idx` (`name`)
+);
+
+DROP TABLE IF EXISTS `team_account`;
+CREATE TABLE `team_account` (
+    `teamId` INT UNSIGNED NOT NULL,
+    `accountId` INT UNSIGNED NOT NULL,
+    PRIMARY KEY (`teamId`, `accountId`)
+);
+
 DROP TABLE IF EXISTS `session`;
 CREATE TABLE `session` (
   `sessionId` char(32) NOT NULL,

@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Class Task_IndexControllerTest
+ *
+ * @group Task_IndexControllerTest
+ * @group Task
+ */
 class Task_IndexControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 {
 
@@ -11,7 +16,7 @@ class Task_IndexControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'Index', 'module' => 'task');
+        $params = array('action' => 'index', 'controller' => 'index', 'module' => 'task');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -20,49 +25,50 @@ class Task_IndexControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $this->assertModule($urlParams['module']);
         $this->assertController($urlParams['controller']);
         $this->assertAction($urlParams['action']);
-        $this->assertQueryContentContains(
-            'div#view-content p',
-            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
-            );
+
+        $this->assertRedirect('Expected redirect not triggered');
+
+        $redirectParams = $this->urlizeOptions(array (
+            'action' => 'list', 'controller' => 'index', 'module' => 'task',
+        ));
+        $redirectUrl = $this->url($redirectParams);
+        $this->assertRedirectTo($redirectUrl, 'No redirection to ' . $redirectUrl);
     }
 
     public function testListAction()
     {
-        $params = array('action' => 'list', 'controller' => 'Index', 'module' => 'task');
+        $params = array('action' => 'list', 'controller' => 'index', 'module' => 'task');
+        $params['projectId'] = 1;
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
-        
+
         // assertions
         $this->assertModule($urlParams['module']);
         $this->assertController($urlParams['controller']);
         $this->assertAction($urlParams['action']);
-        $this->assertQueryContentContains(
-            'div#view-content p',
-            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
-            );
+        $this->assertQueryContentContains('h1', 'Listing tasks');
+        $this->assertQueryCount('tr.tableRow', 1, 'Expecting at least 1 row');
     }
 
     public function testEditAction()
     {
-        $params = array('action' => 'edit', 'controller' => 'Index', 'module' => 'task');
+        $params = array('action' => 'edit', 'controller' => 'index', 'module' => 'task');
+        $params['projectId'] = 1;
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
-        
+
         // assertions
         $this->assertModule($urlParams['module']);
         $this->assertController($urlParams['controller']);
         $this->assertAction($urlParams['action']);
-        $this->assertQueryContentContains(
-            'div#view-content p',
-            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
-            );
+        $this->assertQueryContentContains('h1', 'Add or edit a task');
     }
 
     public function testSaveAction()
     {
-        $params = array('action' => 'save', 'controller' => 'Index', 'module' => 'task');
+        $params = array('action' => 'save', 'controller' => 'index', 'module' => 'task');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -71,15 +77,19 @@ class Task_IndexControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
         $this->assertModule($urlParams['module']);
         $this->assertController($urlParams['controller']);
         $this->assertAction($urlParams['action']);
-        $this->assertQueryContentContains(
-            'div#view-content p',
-            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
-            );
+
+        $this->assertRedirect('Expected redirect not triggered');
+
+        $redirectParams = $this->urlizeOptions(array (
+            'action' => 'list', 'controller' => 'index', 'module' => 'project',
+        ));
+        $redirectUrl = $this->url($redirectParams);
+        $this->assertRedirectTo($redirectUrl, 'No redirection to ' . $redirectUrl);
     }
 
     public function testRemoveAction()
     {
-        $params = array('action' => 'remove', 'controller' => 'Index', 'module' => 'task');
+        $params = array('action' => 'remove', 'controller' => 'index', 'module' => 'task');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);

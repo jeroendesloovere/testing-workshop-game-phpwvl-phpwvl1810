@@ -26,7 +26,7 @@ h1 { margin: 5px 0 15px; }
 p { margin-bottom: 15px; }
 
 table { margin: 0; padding: 0; border-collapse: collapse;}
-tr.tableHeader { height: 50px; }
+tr.tableHeader, tr.tableRow { height: 50px; }
 tr.odd { background: lightgrey; }
 th, td { margin: 0; border: 0; padding: 2px 15px; }
 th { background: black; color: white; }
@@ -87,7 +87,7 @@ input[type="submit"] {
 #master { width: 1000px; margin: 0 auto; text-align: left; }
 #header { height: 50px; margin-top: 20px; }
 
-#middle { border: 1px solid black; min-height: 450px; }
+#middle { border: none; min-height: 450px; }
 #footer { }
 
 

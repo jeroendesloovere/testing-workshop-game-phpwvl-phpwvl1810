@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Class Account_Form_Forgot
+ *
+ * @category TheiaLive
+ * @package Account
+ */
 class Account_Form_Forgot extends Zend_Form
 {
 

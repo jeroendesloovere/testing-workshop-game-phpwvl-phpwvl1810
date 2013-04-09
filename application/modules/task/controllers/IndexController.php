@@ -24,7 +24,7 @@ class Task_IndexController extends Zend_Controller_Action
         $taskCollection = new Task_Model_TaskCollection();
         $taskMapper = new Task_Model_TaskMapper();
         
-        $taskMapper->fetchAll($taskCollection, 'Task_Model_Task', array (
+        $taskMapper->fetchAll($taskCollection, 'Task_Model_TaskDecorator', array (
             'projectId = ?' => $projectId,
             'accountId = ?' => $account->getId(),
         ));
@@ -75,7 +75,7 @@ class Task_IndexController extends Zend_Controller_Action
     public function saveAction()
     {
         if (!$this->getRequest()->isPost()) {
-            return $this->_helper->redirector('list', 'index', 'task');
+            return $this->_helper->redirector('list', 'index', 'project');
         }
         
         $form = new Task_Form_Task(array (

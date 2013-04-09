@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Class Account_Bootstrap
+ *
+ * @category TheiaLive
+ * @package Account
+ */
 class Account_Bootstrap extends Zend_Application_Module_Bootstrap
 {
     public function _initAutoload()

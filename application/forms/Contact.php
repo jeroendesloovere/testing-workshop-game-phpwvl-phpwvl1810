@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Class Application_Form_Contact
+ *
+ * @category TheiaLive
+ * @package Default
+ */
 class Application_Form_Contact extends Zend_Form
 {
 
