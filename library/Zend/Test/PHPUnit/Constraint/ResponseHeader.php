@@ -17,7 +17,7 @@
  * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: ResponseHeader.php 24851 2012-05-31 19:37:46Z rob $
+ * @version    $Id$
  */
 
 /** @see PHPUnit_Framework_Constraint */
@@ -347,7 +347,7 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader extends PHPUnit_Framework_Cons
 
         $contents = str_replace($header . ': ', '', $fullHeader);
 
-        return (strstr($contents, $match));
+        return (strstr($contents, $match) !== false);
     }
 
     /**
@@ -366,7 +366,7 @@ class Zend_Test_PHPUnit_Constraint_ResponseHeader extends PHPUnit_Framework_Cons
 
         $contents = str_replace($header . ': ', '', $fullHeader);
 
-        return (!strstr($contents, $match));
+        return (strstr($contents, $match) === false);
     }
 
     /**

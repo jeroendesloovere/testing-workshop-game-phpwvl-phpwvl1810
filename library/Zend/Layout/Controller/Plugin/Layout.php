@@ -31,7 +31,7 @@ require_once 'Zend/Controller/Plugin/Abstract.php';
  * @subpackage Plugins
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Layout.php 24593 2012-01-05 20:35:02Z matthew $
+ * @version    $Id$
  */
 class Zend_Layout_Controller_Plugin_Layout extends Zend_Controller_Plugin_Abstract
 {

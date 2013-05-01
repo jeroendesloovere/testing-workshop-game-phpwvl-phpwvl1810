@@ -16,7 +16,7 @@
  * @package    Zend_Json
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Decoder.php 24799 2012-05-12 19:27:07Z adamlundrigan $
+ * @version    $Id$
  */
 
 /**

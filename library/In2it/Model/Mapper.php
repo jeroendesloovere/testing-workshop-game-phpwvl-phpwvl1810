@@ -42,7 +42,8 @@ abstract class In2it_Model_Mapper
             }
             $dbTable = new $dbTable;
         }
-        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
+        if (!$dbTable instanceof Zend_Db_Table_Abstract
+            && !$dbTable instanceof Zend_Test_DbAdapter) {
             throw new In2it_Model_Exception('Invalid data gateway provided');
         }
         $this->_dbTable = $dbTable;

@@ -30,7 +30,7 @@ require_once 'Zend/Form/Element/Multi.php';
  * @subpackage Element
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Radio.php 25109 2012-11-07 20:48:04Z rob $
+ * @version    $Id$
  */
 class Zend_Form_Element_Radio extends Zend_Form_Element_Multi
 {

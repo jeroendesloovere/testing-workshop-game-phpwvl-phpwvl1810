@@ -17,7 +17,7 @@
  * @subpackage PHPUnit
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Redirect.php 25002 2012-06-26 14:38:28Z adamlundrigan $
+ * @version    $Id$
  */
 
 /** @see PHPUnit_Framework_Constraint */

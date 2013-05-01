@@ -17,7 +17,7 @@
  * @subpackage Node
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Node.php 24610 2012-01-21 13:54:27Z sgehrig $
+ * @version    $Id$
  */
 
 /**

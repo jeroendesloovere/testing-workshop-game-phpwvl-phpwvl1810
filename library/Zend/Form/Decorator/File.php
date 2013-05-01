@@ -38,7 +38,7 @@ require_once 'Zend/File/Transfer/Adapter/Http.php';
  * @subpackage Decorator
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: File.php 25067 2012-11-03 14:20:28Z rob $
+ * @version    $Id$
  */
 class Zend_Form_Decorator_File
     extends Zend_Form_Decorator_Abstract

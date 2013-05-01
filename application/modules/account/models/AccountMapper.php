@@ -14,7 +14,7 @@ class Account_Model_AccountMapper extends In2it_Model_Mapper
         }
         return parent::getDbTable();
     }
-    public function save($account)
+    public function save(In2it_Model_Model $account)
     {
         if (0 < $account->getId()) {
             $this->getDbTable()->update($account->toArray(), 

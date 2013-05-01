@@ -16,7 +16,7 @@
  * @package    Zend_Search_Lucene
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: FSM.php 24593 2012-01-05 20:35:02Z matthew $
+ * @version    $Id$
  */
 
 /** Zend_Search_Lucene_FSMAction */

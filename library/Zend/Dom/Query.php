@@ -16,7 +16,7 @@
  * @package    Zend_Dom
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @version    $Id: Query.php 25033 2012-08-17 19:50:08Z matthew $
+ * @version    $Id$
  */
 
 /**
