@@ -2,6 +2,12 @@
 
 class Task_Model_TaskMapper extends In2it_Model_Mapper
 {
+    /**
+     * Retrieves the DB gateway
+     *
+     * @return Zend_Db_Table
+     * @see In2it_Model_Mapper::getDbTable()
+     */
     public function getDbTable()
     {
         if (null === $this->_dbTable) {
@@ -9,6 +15,12 @@ class Task_Model_TaskMapper extends In2it_Model_Mapper
         }
         return parent::getDbTable();
     }
+
+    /**
+     * Stores a task model to the data storage
+     *
+     * @param In2it_Model_Model $task
+     */
     public function save(In2it_Model_Model $task)
     {
         if (0 < $task->getId()) {
