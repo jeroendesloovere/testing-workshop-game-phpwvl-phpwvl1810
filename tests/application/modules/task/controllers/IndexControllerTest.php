@@ -103,6 +103,23 @@ class Task_IndexControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
             'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
             );
     }
+    public function testTaskCanBeCompleted()
+    {
+        $data = array (
+            'taskId' => 1,
+            'projectId' => 1,
+            'accountId' => 1,
+            'title' => 'TestTask',
+            'description' => 'Lorem lipsum',
+            'dueDate' => date('Y-m-d H:i:s'),
+            'created' => date('Y-m-d H:i:s'),
+            'modified' => date('Y-m-d H:i:s'),
+            'done' => 1,
+        );
+        $task = new Task_Model_Task($data);
+        $this->assertTrue($task->isDone(),
+            'Expected task was done, but it is not');
+    }
 
 
 }

@@ -35,6 +35,7 @@ CREATE TABLE `task` (
     `dueDate` TIMESTAMP NOT NULL,
     `created` TIMESTAMP NOT NULL,
     `modified` TIMESTAMP NOT NULL,
+    `done` TINYINT NOT NULL DEFAULT 0,
     PRIMARY KEY (`taskId`),
     INDEX `task_title_idx` (`title`)
 );

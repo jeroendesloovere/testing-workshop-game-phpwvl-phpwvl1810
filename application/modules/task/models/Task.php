@@ -283,6 +283,7 @@ class Task_Model_Task extends In2it_Model_Model
         if (isset ($row->dueDate)) $this->setDueDate($row->dueDate);
         if (isset ($row->created)) $this->setCreated($row->created);
         if (isset ($row->modified)) $this->setModified($row->modified);
+        if (isset ($row->done)) $this->setDone($row->done);
         return $this;
     }
 
@@ -303,6 +304,7 @@ class Task_Model_Task extends In2it_Model_Model
             'dueDate' => $this->getDueDate()->format('Y-m-d H:i:s'),
             'created' => $this->getCreated()->format('Y-m-d H:i:s'),
             'modified' => $this->getModified()->format('Y-m-d H:i:s'),
+            'done' => $this->isDone() ? 1 : 0,
         );
     }
 }

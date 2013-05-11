@@ -149,3 +149,17 @@ ul.errors {
 }
 ul.errors li { padding: 2px 5px; }
 p.intro { font-size: 110%; }
+
+div.tickbox {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+}
+div.unchecked_tickbox {
+    background-image: url('/images/Checkbox.png');
+    background-position: -22px -36px;
+}
+div.checked_tickbox {
+    background-image: url('/images/Checkbox.png');
+    background-position: -53px -36px;
+}
