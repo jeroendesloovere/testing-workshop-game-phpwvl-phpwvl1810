@@ -5,7 +5,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     public function _initViewSetup()
     {
         // Initialize view
-        $view = $this->getPluginResource('view')->getView();
+        if (null !== $this->getPluginResource('view')) {
+            $view = $this->getPluginResource('view')->getView();
+        } else {
+            $view = new Zend_View();
+        }
         $view->headMeta()->setHttpEquiv(
             'Content-Type', 'text/html; Charset=UTF-8'
         );
