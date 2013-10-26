@@ -29,7 +29,7 @@ class Task_Form_Task extends Zend_Form
             'Filters' => array (),
             'Validators' => array (),
         ));
-        $this->addElement('checkbox', 'done', array (
+/*        $this->addElement('checkbox', 'done', array (
             'Label' => 'Done',
             'Required' => false,
             'Filters' => array (
@@ -39,7 +39,7 @@ class Task_Form_Task extends Zend_Form
                 'Int',
                 array ('Between', false, array ('min' => -1, 'max' => 1)),
             ),
-        ));
+        ));*/
         $this->addElement('submit', 'save', array (
             'Label' => 'Save this task',
             'Ignore' => true,

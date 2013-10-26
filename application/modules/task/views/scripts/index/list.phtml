@@ -17,7 +17,6 @@
         <th>Assigned</th>
         <th>Last modified</th>
         <th>Due date</th>
-        <th>Done</th>
         <th><a class="action-add" href="<?php echo $this->url(array (
     'module' => 'task',
     'controller' => 'index',
@@ -32,7 +31,6 @@
         <td><?php echo $this->escape($task->getAssigned()->getFirstName()) ?></td>
         <td><?php echo $this->escape($task->getModified()->format('Y-m-d H:i:s')) ?></td>
         <td><?php echo $this->escape($task->getDueDate()->format('Y-m-d')) ?></td>
-        <td><?php echo $this->tickBox($task->isDone()) ?></td>
         <td><a class="action-edit" href="<?php echo $this->url(array (
     'module' => 'task',
     'controller' => 'index',
