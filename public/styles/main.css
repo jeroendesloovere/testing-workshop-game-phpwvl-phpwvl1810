@@ -163,3 +163,11 @@ div.checked_tickbox {
     background-image: url('/images/Checkbox.png');
     background-position: -53px -36px;
 }
+
+.textblock {
+    display: block;
+    width: 280px;
+    margin: 15px;
+    float: left;
+    text-align: justify;
+}

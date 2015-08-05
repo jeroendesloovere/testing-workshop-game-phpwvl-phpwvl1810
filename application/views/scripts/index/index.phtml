@@ -1,10 +1,39 @@
 <?php $this->headTitle('The easy task manager') ?>
-<h1>Watch and learn</h1>
-<p class="intro">TheiaLive is a simple task manager, used to serve as an
-example application for training and tutorials purposes. You can register
-and try out the application but there's no business involved with this
-application.</p>
-<h1>Run in the cloud</h1>
-<p class="intro">We're using the cloud powers of Microsoft's <a 
-href="http://www.windowsazure.com" title="Windows Azure">Windows Azure</a> as
-it allows us to simply deploy newer versions to the cloud.</p>
+
+<h1>The easy task manager</h1>
+<img src="<?php echo $this->baseUrl('/images/todo_list.jpg') ?>" alt="todolist" width="100%" height="">
+
+<div class="textblock">
+    <h2>Manage tasks</h2>
+    <p class="intro">TheiaLive is a simple task manager, used to serve as an
+    example application for training and tutorials purposes.<br>
+    Now you too can enjoy an easy task manager!</p>
+</div>
+<div class="textblock">
+    <h2>Run in the cloud</h2>
+    <p class="intro">Access your tasks and projects from any location with
+    our cloud solution. It doesn't matter if you are a small or large company,
+    <span class="darkBlue">TheiaLive</span> will be able to deliver fast
+    and reliable experience.</p>
+</div>
+<div class="textblock">
+    <h2>Safe &amp; Reliable</h2>
+    <p class="intro">We have build this application with quality and
+    security in mind from the start. Every detail has gone through an
+    intensive code and security audit to ensure your data is safe and
+    reliable.</p>
+</div>
+
+<hr class="lightBlue">
+
+<div class="customers">
+    <?php for($i = 0; $i < 6; $i++): ?>
+        <img src="<?php echo $this->baseUrl(sprintf('/images/customer_logo_%02d.png', $i + 1)) ?>" width="150" height="">
+    <?php endfor ?>
+</div>
+
+<div class="testimonialblock">
+    <h2>Testimonials</h2>
+    <p class="testimonial">Never had something this easy as TheiaLive. I love it!</p>
+    <p class="testimonial-source">-- Michelangelo van Dam, CEO In2it</p>
+</div>
