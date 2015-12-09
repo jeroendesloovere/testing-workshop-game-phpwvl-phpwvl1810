@@ -33,7 +33,7 @@ class Account_Form_Login extends Zend_Form
             'Label' => 'Sign in',
             'Ignore' => true,
         ));
-        $this->addElement('hash', 'token');
+//        $this->addElement('hash', 'token');
     }
 
 

@@ -27,7 +27,7 @@ class Account_Form_Forgot extends Zend_Form
             'Label' => 'Send request',
             'Ignore' => true,
         ));
-        $this->addElement('hash', 'token');
+//        $this->addElement('hash', 'token');
     }
 
 

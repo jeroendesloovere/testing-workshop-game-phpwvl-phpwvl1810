@@ -65,7 +65,7 @@ class Account_Form_Register extends Zend_Form
             'Label' => 'Register now',
             'Ignore' => true,
         ));
-        $this->addElement('hash', 'token');
+//        $this->addElement('hash', 'token');
     }
 
 

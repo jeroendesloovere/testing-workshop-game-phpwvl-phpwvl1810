@@ -50,7 +50,7 @@ class Account_Form_NewPassword extends Zend_Form
                 array ('StringLength', false, array ('min' => 40, 'max' => 40)),
             ),
         ));
-        $this->addElement('hash', 'hash');
+//        $this->addElement('hash', 'hash');
     }
 
 

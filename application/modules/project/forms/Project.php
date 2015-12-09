@@ -32,7 +32,7 @@ class Project_Form_Project extends Zend_Form
                 array ('GreaterThan', false, array ('min' => -1)),
             ),
         ));
-        $this->addElement('hash', 'token');
+//        $this->addElement('hash', 'token');
     }
 
 
