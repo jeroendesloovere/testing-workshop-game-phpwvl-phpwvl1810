@@ -1,6 +1,6 @@
-<?php $this->headTitle('Listing tasks') ?>
+<?php $this->headTitle('Listing tasks for ' . $this->escape($this->projectName)) ?>
 
-<h1>Listing tasks</h1>
+<h1>Listing tasks for <?php echo $this->escape($this->projectName) ?></h1>
 
 <?php if (0 === count($this->taskCollection)): ?>
 <p>Currently no tasks assigned. <a href="<?php echo $this->url(array (

@@ -23,6 +23,9 @@ class Task_IndexController extends Zend_Controller_Action
         
         $taskCollection = new Task_Model_TaskCollection();
         $taskMapper = new Task_Model_TaskMapper();
+        $project = new Project_Model_Project();
+        $projectMapper = new Project_Model_ProjectMapper();
+        $projectMapper->find($project, $projectId);
         
         $taskMapper->fetchAll($taskCollection, 'Task_Model_TaskDecorator', array (
             'projectId = ?' => $projectId,
@@ -32,6 +35,7 @@ class Task_IndexController extends Zend_Controller_Action
         $this->view->assign(array (
             'taskCollection' => $taskCollection,
             'projectId' => $projectId,
+            'projectName' => $project->getProjectName(),
         ));
     }
 
