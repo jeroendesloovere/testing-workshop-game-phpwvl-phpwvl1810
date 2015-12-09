@@ -49,26 +49,5 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         return $dbResource;
     }
 
-    protected function _initMail()
-    {
-        if ($this->hasPluginResource('mail')) {
-            $mailResource = $this->getPluginResource('mail');
-            if ($mailResource instanceof Zend_Application_Resource_Mail) {
-                $mailResource->setOptions(array(
-                    'transport' => array(
-                        'type' => 'smtp',
-                        'host' => 'smtp.sendgrid.net',
-                        'ssl' => 'ssl',
-                        'port' => 465,
-                        'auth' => 'login',
-                        'username' => getenv('MAIL_USERNAME'),
-                        'password' => getenv('MAIL_PASSWORD'),
-                    ),
-                ));
-            }
-        }
-        return $mailResource;
-    }
-
 }
 
