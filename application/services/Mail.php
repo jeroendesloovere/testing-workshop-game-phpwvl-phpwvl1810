@@ -8,16 +8,23 @@ class Application_Service_Mail
     protected $_mail;
 
     /**
+     * @var array Configuration options for mail
+     */
+    protected $_options;
+
+    /**
      * Constructor for the mail service that takes an optional
      * Zend_Mail parameter
      *
      * @param null|Zend_Mail $mail
+     * @param array $options
      */
-    public function __construct($mail = null)
+    public function __construct($mail = null, $options = array ())
     {
         if (null !== $mail) {
             $this->setMail($mail);
         }
+        $this->setOptions($options);
     }
 
     /**
@@ -43,6 +50,24 @@ class Application_Service_Mail
     }
 
     /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->_options;
+    }
+
+    /**
+     * @param array $options
+     * @return Application_Service_Mail
+     */
+    public function setOptions($options)
+    {
+        $this->_options = $options;
+        return $this;
+    }
+
+    /**
      * Sends out the mail object to either the default mail transport
      * or to a file transport for testing
      *
@@ -50,7 +75,11 @@ class Application_Service_Mail
     public function send()
     {
         if ('testing' === APPLICATION_ENV) {
-            $transport = new Zend_Mail_Transport_File();
+            $transport = new Zend_Mail_Transport_File(
+                $this->getOptions()
+            );
+            $this->getMail()->setDefaultTransport($transport);
         }
+        return $this->getMail()->send();
     }
 }
