@@ -50,6 +50,11 @@ class Account_Model_Account extends In2it_Model_Model
     protected $_modified;
 
     /**
+     * @var Account_Model_AccountFilter
+     */
+    protected $_inputFilter;
+
+    /**
      * Constructor for this account
      *
      * @param null|array|Zend_Db_Row $params
@@ -155,6 +160,27 @@ class Account_Model_Account extends In2it_Model_Model
     public function getModified()
     {
         return $this->_modified;
+    }
+
+    /**
+     * @return Account_Model_AccountFilter
+     */
+    public function getInputFilter()
+    {
+        if (null === $this->_inputFilter) {
+            $this->setInputFilter(new Account_Model_AccountFilter($this->toArray()));
+        }
+        return $this->_inputFilter;
+    }
+
+    /**
+     * @param Account_Model_AccountFilter $inputFilter
+     * @return Account_Model_Account
+     */
+    public function setInputFilter($inputFilter)
+    {
+        $this->_inputFilter = $inputFilter;
+        return $this;
     }
     public function populate($row)
     {
