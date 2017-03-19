@@ -57,14 +57,20 @@ class Account_IndexController extends Zend_Controller_Action
             $this->_session->register = serialize($form);
             return $this->_helper->redirector('signup', 'index', 'account');
         }
-        
-        $account = new Account_Model_Account($form->getValues());
-        $account->setPassword(Account_Model_Account::generatePasswordHash($account->getPassword()));
-        $account->setToken(Account_Model_Account::generateToken());
-        
-        $accountMapper = new Account_Model_AccountMapper();
-        $accountMapper->save($account);
-        
+
+        try {
+            $account = new Account_Model_Account($form->getValues());
+            $account->setPassword(Account_Model_Account::generatePasswordHash($account->getPassword()));
+            $account->setToken(Account_Model_Account::generateToken());
+
+            $accountMapper = new Account_Model_AccountMapper();
+            $accountMapper->save($account);
+        } catch (Exception $exception) {
+            $form->getElement('email')->addErrorMessage('Email was already registered');
+            $this->_session->register = serialize($form);
+            return $this->_helper->redirector('signup', 'index', 'account');
+        }
+
         $name = sprintf ('%s %s', $account->getFirstName(), $account->getLastName());
         $link = sprintf('http://%s/%s?token=%s&email=%s', 
                 isset ($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'training.local', 
@@ -87,7 +93,11 @@ class Account_IndexController extends Zend_Controller_Action
         $mail->setSubject('Complete your registration at TheiaLive');
         $mail->setBodyHtml($html);
         $mail->setBodyText($text);
-        $mail->send();
+        $result = false;
+        try {
+            $result = $mail->send();
+        } catch (Exception $exception) {
+        }
         $this->_session->name = $name;
         return $this->_helper->redirector('registration-success', 'index', 'account');
         // action body

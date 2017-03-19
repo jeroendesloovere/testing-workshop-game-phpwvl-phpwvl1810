@@ -29,7 +29,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         return $view;
     }
 
-    protected function _initDatabase()
+    /*protected function _initDatabase()
     {
         if ($this->hasPluginResource('db')) {
             $dbResource = $this->getPluginResource('db');
@@ -47,7 +47,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             }
         }
         return $dbResource;
-    }
+    }*/
 
 }
 
