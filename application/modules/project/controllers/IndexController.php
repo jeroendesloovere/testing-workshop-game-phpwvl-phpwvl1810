@@ -7,6 +7,9 @@ class Project_IndexController extends Zend_Controller_Action
     public function init()
     {
         $this->_session = new Zend_Session_Namespace('Project');
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
+            return $this->redirect('account/login');
+        }
     }
 
     public function indexAction()
