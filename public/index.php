@@ -21,9 +21,6 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
-require_once 'Zend/Session.php';
-Zend_Session::start();
-
 require_once 'Zend/Config/Ini.php';
 $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini', APPLICATION_ENV, array ('allowModifications' => true));
 if (file_exists(APPLICATION_PATH . '/configs/local.ini')) {
