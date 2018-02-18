@@ -19,6 +19,11 @@ class Project_IndexController extends Zend_Controller_Action
 
     public function listAction()
     {
+        $auth = Zend_Auth::getInstance();
+        if (!$auth->hasIdentity()) {
+            return $this->_helper->redirector('login', 'index', 'account');
+        }
+
         $identity = Zend_Auth::getInstance()->getIdentity();
         $account = unserialize($identity);
 
