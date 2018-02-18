@@ -1,5 +1,12 @@
 <?php
 
+// Core Session Settings
+ini_set('session.name', 'THEID');
+ini_set('session.cookie_path', '/');
+ini_set('session.cookie_domain', 'theialive.com');
+ini_set('session.cookie_secure', true);
+ini_set('session.cookie_httponly', true);
+
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
