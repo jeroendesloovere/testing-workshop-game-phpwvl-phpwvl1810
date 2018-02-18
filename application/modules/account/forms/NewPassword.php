@@ -15,6 +15,9 @@ class Account_Form_NewPassword extends Zend_Form
             'Required' => true,
             'Filters' => array (),
             'Validators' => array (),
+            'Attribs' => array (
+                "autocomplete" => "off",
+            ),
         ));
         $this->addElement('password', 'verify', array (
             'Label' => 'Verify entered password',
@@ -22,6 +25,9 @@ class Account_Form_NewPassword extends Zend_Form
             'Filters' => array (),
             'Validators' => array (
                 array ('Identical', false, array ('token' => 'password')),
+            ),
+            'Attribs' => array (
+                "autocomplete" => "off",
             ),
         ));
         $this->addElement('submit', 'save', array (

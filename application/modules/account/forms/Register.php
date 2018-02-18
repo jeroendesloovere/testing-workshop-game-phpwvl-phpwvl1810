@@ -52,6 +52,9 @@ class Account_Form_Register extends Zend_Form
             'Required' => true,
             'Filters' => array (),
             'Validators' => array (),
+            'Attribs' => array (
+                "autocomplete" => "off",
+            ),
         ));
         $this->addElement('password', 'verify', array (
             'Label' => 'Verify password',
@@ -59,6 +62,9 @@ class Account_Form_Register extends Zend_Form
             'Filters' => array (),
             'Validators' => array (
                 array ('Identical', false, array ('token' => 'password')),
+            ),
+            'Attribs' => array (
+                "autocomplete" => "off",
             ),
         ));
         $this->addElement('submit', 'register', array (

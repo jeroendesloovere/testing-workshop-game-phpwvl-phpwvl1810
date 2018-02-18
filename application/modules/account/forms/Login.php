@@ -28,6 +28,9 @@ class Account_Form_Login extends Zend_Form
             'Required' => true,
             'Filters' => array (),
             'Validators' => array (),
+            'Attribs' => array (
+                "autocomplete" => "off",
+            ),
         ));
         $this->addElement('submit', 'signin', array (
             'Label' => 'Sign in',
