@@ -16,7 +16,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->headTitle('TheiaLive');
         $view->headTitle()->setSeparator(' | ');
         $view->headLink()->appendStylesheet($view->baseUrl('/styles/main.css'));
-        $view->headLink()->appendStylesheet('http://fonts.googleapis.com/css?family=Exo');
+        $view->headLink()->appendStylesheet('https://fonts.googleapis.com/css?family=Exo');
         $view->headScript()->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js');
         
         // Add it to the ViewRenderer
