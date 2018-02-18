@@ -72,7 +72,7 @@ class Account_IndexController extends Zend_Controller_Action
         }
 
         $name = sprintf ('%s %s', $account->getFirstName(), $account->getLastName());
-        $link = sprintf('http://%s/%s?token=%s&email=%s', 
+        $link = sprintf('https://%s/%s?token=%s&email=%s',
                 isset ($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'training.local', 
                 'account/index/confirm-signup',
                 $account->getToken(),
@@ -264,7 +264,7 @@ class Account_IndexController extends Zend_Controller_Action
         $accountMapper->save($account);
         
         $name = sprintf ('%s %s', $account->getFirstName(), $account->getLastName());
-        $link = sprintf('http://%s/%s?token=%s&email=%s', 
+        $link = sprintf('https://%s/%s?token=%s&email=%s',
                 isset ($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'training.local', 
                 'account/index/verify-token',
                 $account->getToken(),
