@@ -12,7 +12,7 @@ class Project_Model_ProjectMapper extends In2it_Model_Mapper
     public function save(In2it_Model_Model $project)
     {
         if (0 < $project->getId()) {
-            $this->getDbTable()->update($project->toArray(), array ('projectId = ?' => $project->getId()));
+            $this->getDbTable()->update($project->toArray(), ['projectId = ?' => $project->getId()]);
         } else {
             $this->getDbTable()->insert($project->toArray());
             $project->setId($this->getDbTable()->getAdapter()->lastInsertId());

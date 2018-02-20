@@ -7,7 +7,7 @@ class Team_Model_Team extends In2it_Model_Model
     protected $_description;
     protected $_created;
     protected $_modified;
-    
+
     public function __construct($params = null)
     {
         parent::__construct($params);
@@ -43,7 +43,7 @@ class Team_Model_Team extends In2it_Model_Model
     }
     public function setCreated($created)
     {
-        if (!$created instanceof DateTime) {
+        if (! $created instanceof DateTime) {
             $created = new DateTime($created);
         }
         $this->_created = $created;
@@ -54,7 +54,7 @@ class Team_Model_Team extends In2it_Model_Model
     }
     public function setModified($modified)
     {
-        if (!$modified instanceof DateTime) {
+        if (! $modified instanceof DateTime) {
             $modified = new DateTime($modified);
         }
         $this->_modified = $modified;
@@ -77,12 +77,12 @@ class Team_Model_Team extends In2it_Model_Model
     }
     public function toArray()
     {
-        return array (
+        return  [
             'teamId' => $this->getId(),
             'name' => $this->getName(),
             'description' => $this->getDescription(),
             'created' => $this->getCreated(),
             'modified' => $this->getModified(),
-        );
+        ];
     }
 }

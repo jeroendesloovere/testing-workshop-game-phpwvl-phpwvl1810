@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/5.7/phpunit.xsd"
+    bootstrap="tests/bootstrap.php"
+    colors="true"
+    stopOnError="false"
+    stopOnFailure="false">
+
+    <testsuites>
+
+        <!-- Core code unit tests -->
+        <testsuite name="TheiaLive Unit Tests">
+            <directory suffix="php">tests</directory>
+            <exclude>tests/selenium</exclude>
+        </testsuite>
+
+        <!-- Automated acceptance tests -->
+        <!--testsuite name="TheiaLive Selenium Tests">
+            <directory suffix="php">tests</directory>
+            <exclude>tests/application</exclude>
+        </testsuite-->
+
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix="php">application</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="build/coverage" lowUpperBound="75" highLowerBound="90" />
+        <log type="testdox-txt" target="build/logs/testdox.txt" />
+    </logging>
+
+</phpunit>
