@@ -11,14 +11,18 @@ defined('APPLICATION_ENV')
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(APPLICATION_PATH . '/../library'),
-    get_include_path(),
+    realpath(APPLICATION_PATH . '/../vendor/phpunit/phpunit/src'),
 )));
+
+require_once APPLICATION_PATH . '/../vendor/autoload.php';
 
 // Set the default timezone !!!
 date_default_timezone_set('Europe/Brussels');
 
 // We wanna catch all errors en strict warnings
 error_reporting(E_ALL|E_STRICT);
+
+ob_start();
 
 require_once 'Zend/Application.php';
 $application = new Zend_Application(
