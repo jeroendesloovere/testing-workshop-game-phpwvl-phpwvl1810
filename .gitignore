@@ -3,3 +3,6 @@
 /build/
 .idea/
 .vagrant/
+.puppet/
+/vendor/
+*.phar
