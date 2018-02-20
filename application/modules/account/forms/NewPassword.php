@@ -10,55 +10,52 @@ class Account_Form_NewPassword extends Zend_Form
 
     public function init()
     {
-        $this->addElement('password', 'password', array (
+        $this->addElement('password', 'password', [
             'Label' => 'Enter your new password',
             'Required' => true,
-            'Filters' => array (),
-            'Validators' => array (),
-            'Attribs' => array (
+            'Filters' => [],
+            'Validators' => [],
+            'Attribs' => [
                 "autocomplete" => "off",
-            ),
-        ));
-        $this->addElement('password', 'verify', array (
+            ],
+        ]);
+        $this->addElement('password', 'verify', [
             'Label' => 'Verify entered password',
             'Required' => true,
-            'Filters' => array (),
-            'Validators' => array (
-                array ('Identical', false, array ('token' => 'password')),
-            ),
-            'Attribs' => array (
+            'Filters' => [],
+            'Validators' => [
+                 ['Identical', false,  ['token' => 'password']],
+            ],
+            'Attribs' => [
                 "autocomplete" => "off",
-            ),
-        ));
-        $this->addElement('submit', 'save', array (
+            ],
+        ]);
+        $this->addElement('submit', 'save', [
             'Label' => 'Save new password',
             'Ignore' => true,
-        ));
-        $this->addElement('hidden', 'email', array (
-            'Filters' => array (
+        ]);
+        $this->addElement('hidden', 'email', [
+            'Filters' => [
                 'StringTrim',
                 'StripTags',
                 'StringToLower',
-            ),
-            'Validators' => array (
+            ],
+            'Validators' => [
                 'EmailAddress',
-                array ('StringLength', false, array ('min' => 5, 'max' => 150)),
-            ),
-        ));
-        $this->addElement('hidden', 'token', array (
-            'Filters' => array (
+                 ['StringLength', false,  ['min' => 5, 'max' => 150]],
+            ],
+        ]);
+        $this->addElement('hidden', 'token', [
+            'Filters' => [
                 'StringTrim',
                 'StripTags',
                 'StringToLower',
-            ),
-            'Validators' => array (
+            ],
+            'Validators' => [
                 'Alnum',
-                array ('StringLength', false, array ('min' => 40, 'max' => 40)),
-            ),
-        ));
+                 ['StringLength', false,  ['min' => 40, 'max' => 40]],
+            ],
+        ]);
 //        $this->addElement('hash', 'hash');
     }
-
-
 }
-

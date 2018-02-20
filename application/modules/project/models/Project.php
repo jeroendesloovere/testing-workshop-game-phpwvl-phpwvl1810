@@ -42,7 +42,7 @@ class Project_Model_Project extends In2it_Model_Model
     }
     public function setCreated($created)
     {
-        if (!$created instanceof DateTime) {
+        if (! $created instanceof DateTime) {
             $created = new DateTime($created);
         }
         $this->_created = $created;
@@ -54,7 +54,7 @@ class Project_Model_Project extends In2it_Model_Model
     }
     public function setModified($modified)
     {
-        if (!$modified instanceof DateTime) {
+        if (! $modified instanceof DateTime) {
             $modified = new DateTime($modified);
         }
         $this->_modified = $modified;
@@ -69,20 +69,30 @@ class Project_Model_Project extends In2it_Model_Model
         if (is_array($row)) {
             $row = new ArrayObject($row, ArrayObject::ARRAY_AS_PROPS);
         }
-        if (isset ($row->projectId)) $this->setId($row->projectId);
-        if (isset ($row->accountId)) $this->setAccountId($row->accountId);
-        if (isset ($row->projectName)) $this->setProjectName($row->projectName);
-        if (isset ($row->created)) $this->setCreated($row->created);
-        if (isset ($row->modified)) $this->setModified($row->modified);
+        if (isset($row->projectId)) {
+            $this->setId($row->projectId);
+        }
+        if (isset($row->accountId)) {
+            $this->setAccountId($row->accountId);
+        }
+        if (isset($row->projectName)) {
+            $this->setProjectName($row->projectName);
+        }
+        if (isset($row->created)) {
+            $this->setCreated($row->created);
+        }
+        if (isset($row->modified)) {
+            $this->setModified($row->modified);
+        }
     }
     public function toArray()
     {
-        return array (
+        return  [
             'projectId' => $this->getId(),
             'accountId' => $this->getAccountId(),
             'projectName' => $this->getProjectName(),
             'created' => $this->getCreated()->format('Y-m-d H:i:s'),
             'modified' => $this->getModified()->format('Y-m-d H:i:s'),
-        );
+        ];
     }
 }

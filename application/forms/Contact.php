@@ -10,48 +10,45 @@ class Application_Form_Contact extends Zend_Form
 
     public function init()
     {
-        $this->addElement('text', 'name', array (
+        $this->addElement('text', 'name', [
             'Label' => 'Your name',
             'Required' => true,
-            'Filters' => array (
+            'Filters' => [
                 'StringTrim',
                 'StripTags',
-            ),
-            'Validators' => array (
-                array ('StringLength', false, array ('min' => 5, 'max' => 45)),
-            ),
-        ));
-        $this->addElement('text', 'email', array (
+            ],
+            'Validators' => [
+                 ['StringLength', false,  ['min' => 5, 'max' => 45]],
+            ],
+        ]);
+        $this->addElement('text', 'email', [
             'Label' => 'Your email address',
             'Required' => true,
-            'Filters' => array (
+            'Filters' => [
                 'StringTrim',
                 'StripTags',
                 'StringToLower',
-            ),
-            'Validators' => array (
+            ],
+            'Validators' => [
                 'EmailAddress',
-                array ('StringLength', false, array ('min' => 5, 'max' => 150)),
-            ),
-        ));
-        $this->addElement('textarea', 'comment', array (
+                 ['StringLength', false,  ['min' => 5, 'max' => 150]],
+            ],
+        ]);
+        $this->addElement('textarea', 'comment', [
             'Label' => 'Your message',
             'Required' => false,
-            'Filters' => array (
+            'Filters' => [
                 'StringTrim',
                 'StripTags',
-            ),
-            'Validators' => array (),
+            ],
+            'Validators' => [],
             'Rows' => 6,
             'Cols' => 35,
-        ));
-        $this->addElement('submit', 'send', array (
+        ]);
+        $this->addElement('submit', 'send', [
             'Label' => 'Send message',
             'Ignore' => true,
-        ));
+        ]);
         $this->addElement('hash', 'token');
     }
-
-
 }
-

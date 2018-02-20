@@ -174,7 +174,7 @@ class Task_Model_Task extends In2it_Model_Model
      */
     public function setDueDate($dueDate)
     {
-        if (!$dueDate instanceof DateTime) {
+        if (! $dueDate instanceof DateTime) {
             $dueDate = new DateTime($dueDate);
         }
         $this->_dueDate = $dueDate;
@@ -199,7 +199,7 @@ class Task_Model_Task extends In2it_Model_Model
      */
     public function setCreated($created)
     {
-        if (!$created instanceof DateTime) {
+        if (! $created instanceof DateTime) {
             $created = new DateTime($created);
         }
         $this->_created = $created;
@@ -224,7 +224,7 @@ class Task_Model_Task extends In2it_Model_Model
      */
     public function setModified($modified)
     {
-        if (!$modified instanceof DateTime) {
+        if (! $modified instanceof DateTime) {
             $modified = new DateTime($modified);
         }
         $this->_modified = $modified;
@@ -275,15 +275,33 @@ class Task_Model_Task extends In2it_Model_Model
         if (is_array($row)) {
             $row = new ArrayObject($row, ArrayObject::ARRAY_AS_PROPS);
         }
-        if (isset ($row->taskId)) $this->setId($row->taskId);
-        if (isset ($row->projectId)) $this->setProjectId($row->projectId);
-        if (isset ($row->accountId)) $this->setAccountId($row->accountId);
-        if (isset ($row->title)) $this->setTitle($row->title);
-        if (isset ($row->description)) $this->setDescription($row->description);
-        if (isset ($row->dueDate)) $this->setDueDate($row->dueDate);
-        if (isset ($row->created)) $this->setCreated($row->created);
-        if (isset ($row->modified)) $this->setModified($row->modified);
-        if (isset ($row->done)) $this->setDone($row->done);
+        if (isset($row->taskId)) {
+            $this->setId($row->taskId);
+        }
+        if (isset($row->projectId)) {
+            $this->setProjectId($row->projectId);
+        }
+        if (isset($row->accountId)) {
+            $this->setAccountId($row->accountId);
+        }
+        if (isset($row->title)) {
+            $this->setTitle($row->title);
+        }
+        if (isset($row->description)) {
+            $this->setDescription($row->description);
+        }
+        if (isset($row->dueDate)) {
+            $this->setDueDate($row->dueDate);
+        }
+        if (isset($row->created)) {
+            $this->setCreated($row->created);
+        }
+        if (isset($row->modified)) {
+            $this->setModified($row->modified);
+        }
+        if (isset($row->done)) {
+            $this->setDone($row->done);
+        }
         return $this;
     }
 
@@ -295,7 +313,7 @@ class Task_Model_Task extends In2it_Model_Model
      */
     public function toArray()
     {
-        return array (
+        return  [
             'taskId' => $this->getId(),
             'projectId' => $this->getProjectId(),
             'accountId' => $this->getAccountId(),
@@ -305,6 +323,6 @@ class Task_Model_Task extends In2it_Model_Model
             'created' => $this->getCreated()->format('Y-m-d H:i:s'),
             'modified' => $this->getModified()->format('Y-m-d H:i:s'),
             'done' => $this->isDone() ? 1 : 0,
-        );
+        ];
     }
 }

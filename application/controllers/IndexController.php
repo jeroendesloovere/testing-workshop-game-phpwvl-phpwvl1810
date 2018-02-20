@@ -21,54 +21,54 @@ class IndexController extends Zend_Controller_Action
 
     public function contactAction()
     {
-        $form = new Application_Form_Contact(array (
+        $form = new Application_Form_Contact([
             'method' => 'POST',
-            'action' => $this->view->url(array (
+            'action' => $this->view->url([
                 'module' => 'default',
                 'controller' => 'index',
                 'action' => 'submit',
-            ), null, true),
-        ));
-        
+            ], null, true),
+        ]);
+
         if (Zend_Auth::getInstance()->hasIdentity()) {
             $identity = Zend_Auth::getInstance()->getIdentity();
             $account = unserialize($identity);
             $form->getElement('name')->setValue($account->getFirstName() . ' ' . $account->getLastName());
             $form->getElement('email')->setValue($account->getEmail());
         }
-        
-        if (isset ($this->_session->contactForm)) {
+
+        if (isset($this->_session->contactForm)) {
             $form = unserialize($this->_session->contactForm);
-            unset ($this->_session->contactForm);
+            unset($this->_session->contactForm);
         }
-        
+
         $this->view->contactForm = $form;
     }
 
     public function submitAction()
     {
-        if (!$this->getRequest()->isPost()) {
+        if (! $this->getRequest()->isPost()) {
             return $this->_helper->redirector('contact', 'index', 'default');
         }
-        $form = new Application_Form_Contact(array (
+        $form = new Application_Form_Contact([
             'method' => 'POST',
-            'action' => $this->view->url(array (
+            'action' => $this->view->url([
                 'module' => 'default',
                 'controller' => 'index',
                 'action' => 'submit',
-            ), null, true),
-        ));
-        if (!$form->isValid($this->getRequest()->getPost())) {
+            ], null, true),
+        ]);
+        if (! $form->isValid($this->getRequest()->getPost())) {
             $this->_session->contactForm = serialize($form);
             return $this->_helper->redirector('contact', 'index', 'default');
         }
-        
+
         $html = file_get_contents(APPLICATION_PATH . "/templates/contact.html");
         $text = file_get_contents(APPLICATION_PATH . "/templates/contact.txt");
-        
+
         $html = str_replace('{{MSG}}', $form->getElement('comment')->getValue(), $html);
         $text = str_replace('{{MSG}}', $form->getElement('comment')->getValue(), $text);
-        
+
         // send message
         $mail = new Zend_Mail();
         $mail->setFrom($form->getElement('email')->getValue(), $form->getElement('name')->getValue());
@@ -77,7 +77,7 @@ class IndexController extends Zend_Controller_Action
         $mail->setBodyHtml($html);
         $mail->setBodyText($text);
         $mail->send();
-        
+
         return $this->_helper->redirector('success', 'index', 'default');
     }
 
@@ -85,13 +85,4 @@ class IndexController extends Zend_Controller_Action
     {
         // action body
     }
-
-
 }
-
-
-
-
-
-
-

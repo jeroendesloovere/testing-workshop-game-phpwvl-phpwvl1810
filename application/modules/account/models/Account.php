@@ -136,7 +136,7 @@ class Account_Model_Account extends In2it_Model_Model
     }
     public function setCreated($created)
     {
-        if (!$created instanceof DateTime) {
+        if (! $created instanceof DateTime) {
             $created = new DateTime($created);
         }
         $this->_created = $created;
@@ -147,7 +147,7 @@ class Account_Model_Account extends In2it_Model_Model
     }
     public function setModified($modified)
     {
-        if (!$modified instanceof DateTime) {
+        if (! $modified instanceof DateTime) {
             $modified = new DateTime($modified);
         }
         $this->_modified = $modified;
@@ -161,22 +161,42 @@ class Account_Model_Account extends In2it_Model_Model
         if (is_array($row)) {
             $row = new ArrayObject($row, ArrayObject::ARRAY_AS_PROPS);
         }
-        
-        if (isset ($row->accountId)) $this->setId($row->accountId);
-        if (isset ($row->firstName)) $this->setFirstName ($row->firstName);
-        if (isset ($row->lastName)) $this->setLastName($row->lastName);
-        if (isset ($row->email)) $this->setEmail($row->email);
-        if (isset ($row->password)) $this->setPassword($row->password);
-        if (isset ($row->token)) $this->setToken($row->token);
-        if (isset ($row->active)) $this->setActive($row->active);
-        if (isset ($row->reset)) $this->setReset($row->reset);
-        if (isset ($row->created)) $this->setCreated($row->created);
-        if (isset ($row->modified)) $this->setModified($row->modified);
+
+        if (isset($row->accountId)) {
+            $this->setId($row->accountId);
+        }
+        if (isset($row->firstName)) {
+            $this->setFirstName($row->firstName);
+        }
+        if (isset($row->lastName)) {
+            $this->setLastName($row->lastName);
+        }
+        if (isset($row->email)) {
+            $this->setEmail($row->email);
+        }
+        if (isset($row->password)) {
+            $this->setPassword($row->password);
+        }
+        if (isset($row->token)) {
+            $this->setToken($row->token);
+        }
+        if (isset($row->active)) {
+            $this->setActive($row->active);
+        }
+        if (isset($row->reset)) {
+            $this->setReset($row->reset);
+        }
+        if (isset($row->created)) {
+            $this->setCreated($row->created);
+        }
+        if (isset($row->modified)) {
+            $this->setModified($row->modified);
+        }
         return $this;
     }
     public function toArray()
     {
-        return array (
+        return  [
             'accountId' => $this->getId(),
             'firstName' => $this->getFirstName(),
             'lastName'  => $this->getLastName(),
@@ -187,11 +207,11 @@ class Account_Model_Account extends In2it_Model_Model
             'reset'     => $this->isReset() ? 1 : 0,
             'created'   => $this->getCreated()->format('Y-m-d H:i:s'),
             'modified'  => $this->getModified()->format('Y-m-d H:i:s'),
-        );
+        ];
     }
     /**
      * Generates a one-way password hash
-     * 
+     *
      * @param string $password
      * @return string
      */
@@ -201,7 +221,7 @@ class Account_Model_Account extends In2it_Model_Model
     }
     /**
      * Generates a 40-character random string
-     * 
+     *
      * @return string
      */
     public static function generateToken()

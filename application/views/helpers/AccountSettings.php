@@ -3,7 +3,7 @@
 class Application_View_Helper_AccountSettings extends Zend_View_Helper_Abstract
 {
     protected $_view;
-    
+
     public function setView(Zend_View_Interface $view)
     {
         $this->_view = $view;

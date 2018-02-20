@@ -10,70 +10,67 @@ class Account_Form_Register extends Zend_Form
 
     public function init()
     {
-        $this->addElement('text', 'firstName', array (
+        $this->addElement('text', 'firstName', [
             'Label' => 'First name',
             'Required' => true,
-            'Filters' => array (
+            'Filters' => [
                 'StringTrim',
                 'StripTags',
-            ),
-            'Validators' => array (
-                array ('Alpha', false, array ('allowWhitespace' => true)),
-                array ('StringLength', false, array ('min' => 2, 'max' => 45)),
-            ),
-        ));
-        $this->addElement('text', 'lastName', array (
+            ],
+            'Validators' => [
+                 ['Alpha', false,  ['allowWhitespace' => true]],
+                 ['StringLength', false,  ['min' => 2, 'max' => 45]],
+            ],
+        ]);
+        $this->addElement('text', 'lastName', [
             'Label' => 'Last name',
             'Required' => true,
-            'Filters' => array (
+            'Filters' => [
                 'StringTrim',
                 'StripTags',
-            ),
-            'Validators' => array (
-                array ('Regex', false, array ('pattern' => '/[a-zA-Z\-\'\s\.\,]+/')),
-                array ('StringLength', false, array ('min' => 2, 'max' => 45)),
-            ),
-        ));
-        $this->addElement('text', 'email', array (
+            ],
+            'Validators' => [
+                 ['Regex', false,  ['pattern' => '/[a-zA-Z\-\'\s\.\,]+/']],
+                 ['StringLength', false,  ['min' => 2, 'max' => 45]],
+            ],
+        ]);
+        $this->addElement('text', 'email', [
             'Label' => 'E-mail address',
             'Required' => true,
-            'Filters' => array (
+            'Filters' => [
                 'StringTrim',
                 'StripTags',
                 'StringToLower',
-            ),
-            'Validators' => array (
+            ],
+            'Validators' => [
                 'EmailAddress',
-                array ('StringLength', false, array ('min' => 5, 'max' => 150)),
-            ),
-        ));
-        $this->addElement('password', 'password', array (
+                 ['StringLength', false,  ['min' => 5, 'max' => 150]],
+            ],
+        ]);
+        $this->addElement('password', 'password', [
             'Label' => 'Password',
             'Required' => true,
-            'Filters' => array (),
-            'Validators' => array (),
-            'Attribs' => array (
+            'Filters' => [],
+            'Validators' => [],
+            'Attribs' => [
                 "autocomplete" => "off",
-            ),
-        ));
-        $this->addElement('password', 'verify', array (
+            ],
+        ]);
+        $this->addElement('password', 'verify', [
             'Label' => 'Verify password',
             'Required' => true,
-            'Filters' => array (),
-            'Validators' => array (
-                array ('Identical', false, array ('token' => 'password')),
-            ),
-            'Attribs' => array (
+            'Filters' => [],
+            'Validators' => [
+                 ['Identical', false,  ['token' => 'password']],
+            ],
+            'Attribs' => [
                 "autocomplete" => "off",
-            ),
-        ));
-        $this->addElement('submit', 'register', array (
+            ],
+        ]);
+        $this->addElement('submit', 'register', [
             'Label' => 'Register now',
             'Ignore' => true,
-        ));
+        ]);
 //        $this->addElement('hash', 'token');
     }
-
-
 }
-

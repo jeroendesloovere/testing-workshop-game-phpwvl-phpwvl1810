@@ -13,7 +13,7 @@ class Team_Model_TeamMapper extends In2it_Model_Mapper
     {
         $id = (int) $team->getId();
         if (0 < $id) {
-            $this->getDbTable()->update($team->toArray(), array ('teamId = ?' => $team->getId()));
+            $this->getDbTable()->update($team->toArray(), ['teamId = ?' => $team->getId()]);
         } else {
             $this->getDbTable()->insert($team->toArray());
             $id = $this->getDbTable()->getAdapter()->lastInsertId();

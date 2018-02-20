@@ -10,35 +10,32 @@ class Account_Form_Login extends Zend_Form
 
     public function init()
     {
-        $this->addElement('text', 'email', array (
+        $this->addElement('text', 'email', [
             'Label' => 'Your e-mail address',
             'Required' => true,
-            'Filter' => array (
+            'Filter' => [
                 'StringTrim',
                 'StripTags',
                 'StringToLower',
-            ),
-            'Validators' => array (
+            ],
+            'Validators' => [
                 'EmailAddress',
-                array ('StringLength', false, array ('min' => 5, 'max' => 150)),
-            ),
-        ));
-        $this->addElement('password', 'password', array (
+                 ['StringLength', false,  ['min' => 5, 'max' => 150]],
+            ],
+        ]);
+        $this->addElement('password', 'password', [
             'Label' => 'Your password',
             'Required' => true,
-            'Filters' => array (),
-            'Validators' => array (),
-            'Attribs' => array (
+            'Filters' => [],
+            'Validators' => [],
+            'Attribs' => [
                 "autocomplete" => "off",
-            ),
-        ));
-        $this->addElement('submit', 'signin', array (
+            ],
+        ]);
+        $this->addElement('submit', 'signin', [
             'Label' => 'Sign in',
             'Ignore' => true,
-        ));
+        ]);
 //        $this->addElement('hash', 'token');
     }
-
-
 }
-

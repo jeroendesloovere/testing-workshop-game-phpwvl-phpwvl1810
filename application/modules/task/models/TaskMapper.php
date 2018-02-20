@@ -24,10 +24,10 @@ class Task_Model_TaskMapper extends In2it_Model_Mapper
     public function save(In2it_Model_Model $task)
     {
         if (0 < $task->getId()) {
-            $this->getDbTable()->update($task->toArray(), array (
+            $this->getDbTable()->update($task->toArray(), [
                 'taskId = ?' => $task->getId(),
                 'projectId = ?' => $task->getProjectId(),
-            ));
+            ]);
         } else {
             $this->getDbTable()->insert($task->toArray());
             $task->setId($this->getDbTable()->getAdapter()->lastInsertId());

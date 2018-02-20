@@ -10,26 +10,23 @@ class Account_Form_Forgot extends Zend_Form
 
     public function init()
     {
-        $this->addElement('text', 'email', array (
+        $this->addElement('text', 'email', [
             'Label' => 'Your e-mail address',
             'Required' => true,
-            'Filters' => array (
+            'Filters' => [
                 'StringTrim',
                 'StripTags',
                 'StringToLower'
-            ),
-            'Validators' => array (
+            ],
+            'Validators' => [
                 'EmailAddress',
-                array ('StringLength', false, array ('min' => 5, 'max' => 150)),
-            ),
-        ));
-        $this->addElement('submit', 'request', array (
+                 ['StringLength', false,  ['min' => 5, 'max' => 150]],
+            ],
+        ]);
+        $this->addElement('submit', 'request', [
             'Label' => 'Send request',
             'Ignore' => true,
-        ));
+        ]);
 //        $this->addElement('hash', 'token');
     }
-
-
 }
-

@@ -17,8 +17,10 @@ class Account_Model_AccountMapper extends In2it_Model_Mapper
     public function save(In2it_Model_Model $account)
     {
         if (0 < $account->getId()) {
-            $this->getDbTable()->update($account->toArray(), 
-                array ('accountId = ?' => $account->getId()));
+            $this->getDbTable()->update(
+                $account->toArray(),
+                ['accountId = ?' => $account->getId()]
+            );
         } else {
             $this->getDbTable()->insert($account->toArray());
             $account->setId($this->getDbTable()->getAdapter()->lastInsertId());

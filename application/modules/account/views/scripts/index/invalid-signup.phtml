@@ -5,19 +5,19 @@
 <p>You reached this page because the credentials you provided were not
 valid for signing up with TheiaLive.</p>
 <p>It could be that you already registered here, in that case you can
-just <a href="<?php echo $this->url(array (
+just <a href="<?php echo $this->url([
     'module' => 'account',
     'controller' => 'index',
     'action' => 'login',
-), null, true) ?>" title="Sign in">sign in</a> into your account.</p>
-<p>If you forgot your password, you can <a href="<?php echo $this->url(array (
+], null, true) ?>" title="Sign in">sign in</a> into your account.</p>
+<p>If you forgot your password, you can <a href="<?php echo $this->url([
     'module' => 'account',
     'controller' => 'index',
     'action' => 'forgot-password',
-), null, true) ?>" title="Reset your password">reset your password</a>.</p>
-<p>For further questions, don't hesitate to <a href="<?php echo $this->url(array (
+], null, true) ?>" title="Reset your password">reset your password</a>.</p>
+<p>For further questions, don't hesitate to <a href="<?php echo $this->url([
     'module' => 'default',
     'controller' => 'index',
     'action' => 'contact',
-), null, true) ?>" title="Contact us">contact us</a>.</p>
+], null, true) ?>" title="Contact us">contact us</a>.</p>
 <p>Best regards,<br/><br/>The TheiaLive Team</p>

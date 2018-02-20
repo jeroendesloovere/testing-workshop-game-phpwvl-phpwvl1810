@@ -5,65 +5,64 @@ class Task_Form_Task extends Zend_Form
 
     public function init()
     {
-        $this->addElement('text', 'title', array (
+        $this->addElement('text', 'title', [
             'Label' => 'Task title',
             'Required' => true,
-            'Filters' => array (
+            'Filters' => [
                 'StringTrim',
                 'StripTags',
-            ),
-            'Validators' => array (),
+            ],
+            'Validators' => [],
             'Size' => 35,
-        ));
-        $this->addElement('textarea', 'description', array (
+        ]);
+        $this->addElement('textarea', 'description', [
             'Label' => 'Description',
             'Required' => false,
-            'Filters' => array (),
-            'Validators' => array (),
+            'Filters' => [],
+            'Validators' => [],
             'Cols' => 35,
             'Rows' => 12,
-        ));
-        $this->addElement('text', 'dueDate', array (
+        ]);
+        $this->addElement('text', 'dueDate', [
             'Label' => 'Due date',
             'Required' => true,
-            'Filters' => array (),
-            'Validators' => array (),
-        ));
-        $this->addElement('checkbox', 'done', array (
+            'Filters' => [],
+            'Validators' => [],
+        ]);
+        $this->addElement('checkbox', 'done', [
             'Label' => 'Done',
             'Required' => false,
-            'Filters' => array (
+            'Filters' => [
                 'Int',
-            ),
-            'Validators' => array (
+            ],
+            'Validators' => [
                 'Int',
-                array ('Between', false, array ('min' => -1, 'max' => 1)),
-            ),
-        ));
-        $this->addElement('submit', 'save', array (
+                 ['Between', false,  ['min' => -1, 'max' => 1]],
+            ],
+        ]);
+        $this->addElement('submit', 'save', [
             'Label' => 'Save this task',
             'Ignore' => true,
-        ));
-        $this->addElement('hidden', 'projectId', array (
+        ]);
+        $this->addElement('hidden', 'projectId', [
             'Required' => true,
-            'Filters' => array (
+            'Filters' => [
                 'Int',
-            ),
-            'Validators' => array (
+            ],
+            'Validators' => [
                 'Int',
-                array ('GreaterThan', false, array ('min' => 0)),
-            ),
-        ));
-        $this->addElement('hidden', 'taskId', array (
+                 ['GreaterThan', false,  ['min' => 0]],
+            ],
+        ]);
+        $this->addElement('hidden', 'taskId', [
             'Required' => true,
-            'Filters' => array (
+            'Filters' => [
                 'Int',
-            ),
-            'Validators' => array (
+            ],
+            'Validators' => [
                 'Int',
-                array ('GreaterThan', false, array ('min' => -1)),
-            ),
-        ));
+                 ['GreaterThan', false,  ['min' => -1]],
+            ],
+        ]);
     }
 }
-
