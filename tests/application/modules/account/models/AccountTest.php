@@ -37,6 +37,24 @@ class Account_Model_AccountTest extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function testAccountRejectsBadValues()
+    {
+        $data = array (
+            'accountId' => 'Foo Bar',
+            'firstName' => '',
+            'lastName' => '',
+            'email' => '',
+            'password' => '',
+            'token' => '',
+            'active' => '',
+            'reset' => '',
+            'created' => '',
+            'modified' => '',
+        );
+        $account = new Account_Model_Account($data);
+        $this->assertSame(0, $account->getId());
+    }
+
     /**
      * @dataProvider goodDataProvider
      */
