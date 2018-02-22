@@ -12,6 +12,12 @@ defined('DB_PASS') ||
 defined('DB_NAME') ||
     define('DB_NAME', getenv('DB_NAME'));
 
+/**
+ * Session settings
+ */
+defined('SESS_SAVE_PATH') ||
+    define('SESS_SAVE_PATH', getenv('SESS_SAVE_PATH') ? getenv('SESS_SAVE_PATH') : 'D:\Temp');
+
 /*
  * SMTP settings
  */

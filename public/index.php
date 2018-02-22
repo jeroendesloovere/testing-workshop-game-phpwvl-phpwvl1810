@@ -7,6 +7,10 @@ ini_set('session.cookie_domain', 'theialive.com');
 ini_set('session.cookie_secure', true);
 ini_set('session.cookie_httponly', true);
 
+if (file_exists(__DIR__ . '/../application/configs/env.php')) {
+    require_once __DIR__ . '/../application/configs/env.php';
+}
+
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
