@@ -16,7 +16,7 @@ defined('DB_NAME') ||
  * Session settings
  */
 defined('SESS_SAVE_PATH') ||
-    define('SESS_SAVE_PATH', getenv('SESS_SAVE_PATH') ? getenv('SESS_SAVE_PATH') : 'D:\Temp');
+    define('SESS_SAVE_PATH', getenv('SESS_SAVE_PATH') ? getenv('SESS_SAVE_PATH') : ini_get('session.save_path'));
 
 /*
  * SMTP settings
