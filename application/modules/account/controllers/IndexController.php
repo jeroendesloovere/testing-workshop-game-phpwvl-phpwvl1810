@@ -7,12 +7,21 @@
  */
 class Account_IndexController extends Zend_Controller_Action
 {
+    /**
+     * @var Zend_Session_Namespace
+     */
+    protected $_session;
 
-    protected $_session = null;
+    /**
+     * @var Zend_Log
+     */
+    protected $_logger;
 
     public function init()
     {
         $this->_session = new Zend_Session_Namespace('Account');
+        $this->_logger = $this->getInvokeArg('bootstrap')
+            ->getResource('log');
     }
 
     public function indexAction()
@@ -53,8 +62,14 @@ class Account_IndexController extends Zend_Controller_Action
                 'action' => 'register',
             ], null, true),
         ]);
+        $this->_logger->info('New registration from ' . $form->getElement('email'));
         if (! $form->isValid($this->getRequest()->getPost())) {
-            $this->_session->register = serialize($form);
+            $this->_logger->warn('Registration data invalid');
+            $this->_logger->debug('Errors: ' . var_export($form->getErrors(), true));
+            $formData = serialize($form);
+            $this->_logger->info('Storing ' . strlen($formData) . ' bytes of data into sessions');
+            $this->_session->register = $formData;
+            $this->_logger->info('Redirecting back to signup page');
             return $this->_helper->redirector('signup', 'index', 'account');
         }
 
@@ -65,7 +80,10 @@ class Account_IndexController extends Zend_Controller_Action
 
             $accountMapper = new Account_Model_AccountMapper();
             $accountMapper->save($account);
+            $this->_logger->info('Saved new account into database');
         } catch (Exception $exception) {
+            $this->_logger->warn($exception->getMessage());
+            $this->_logger->debug($exception->getTraceAsString());
             $form->getElement('email')->addErrorMessage('Email was already registered');
             $this->_session->register = serialize($form);
             return $this->_helper->redirector('signup', 'index', 'account');
@@ -98,7 +116,10 @@ class Account_IndexController extends Zend_Controller_Action
         $result = false;
         try {
             $result = $mail->send();
+            $this->_logger->info('Registration link sent to ' . $account->getEmail());
         } catch (Exception $exception) {
+            $this->_logger->crit('Cannot sent e-mail to ' . $account->getEmail() . ': ' . $exception->getMessage());
+            $this->_logger->debug($exception->getTraceAsString());
         }
         $this->_session->name = $name;
         return $this->_helper->redirector('registration-success', 'index', 'account');
