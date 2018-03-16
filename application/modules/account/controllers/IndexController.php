@@ -62,7 +62,7 @@ class Account_IndexController extends Zend_Controller_Action
                 'action' => 'register',
             ], null, true),
         ]);
-        $this->_logger->info('New registration from ' . $form->getElement('email'));
+
         if (! $form->isValid($this->getRequest()->getPost())) {
             $this->_logger->warn('Registration data invalid');
             $this->_logger->debug('Errors: ' . var_export($form->getErrors(), true));
@@ -72,6 +72,7 @@ class Account_IndexController extends Zend_Controller_Action
             $this->_logger->info('Redirecting back to signup page');
             return $this->_helper->redirector('signup', 'index', 'account');
         }
+        $this->_logger->info('New registration from ' . $form->getElement('email')->getValue());
 
         try {
             $account = new Account_Model_Account($form->getValues());

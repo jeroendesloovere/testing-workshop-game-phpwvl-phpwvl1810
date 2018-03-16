@@ -6,7 +6,7 @@
 defined('DB_HOST') ||
     define('DB_HOST', getenv('DB_HOST'));
 defined('DB_USER') ||
-    define('DB_USER', getenv('DB_HOST'));
+    define('DB_USER', getenv('DB_USER'));
 defined('DB_PASS') ||
     define('DB_PASS', getenv('DB_PASS'));
 defined('DB_NAME') ||
