@@ -1,5 +1,9 @@
 <?php
 
+if (file_exists(__DIR__ . '/../application/configs/env.php')) {
+    require_once __DIR__ . '/../application/configs/env.php';
+}
+
 // Define path to application directory
 defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/../application'));
