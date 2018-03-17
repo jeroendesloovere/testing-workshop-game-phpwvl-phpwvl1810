@@ -51,7 +51,9 @@ class Account_Form_Register extends Zend_Form
             'Label' => 'Password',
             'Required' => true,
             'Filters' => [],
-            'Validators' => [],
+            'Validators' => [
+                ['StringLength', false, ['max' => 500]],
+            ],
             'Attribs' => [
                 "autocomplete" => "off",
             ],
@@ -61,7 +63,8 @@ class Account_Form_Register extends Zend_Form
             'Required' => true,
             'Filters' => [],
             'Validators' => [
-                 ['Identical', false,  ['token' => 'password']],
+                ['StringLength', false, ['max' => 500]],
+                ['Identical', false,  ['token' => 'password']],
             ],
             'Attribs' => [
                 "autocomplete" => "off",
@@ -71,6 +74,6 @@ class Account_Form_Register extends Zend_Form
             'Label' => 'Register now',
             'Ignore' => true,
         ]);
-//        $this->addElement('hash', 'token');
+        $this->addElement('hash', 'token');
     }
 }
