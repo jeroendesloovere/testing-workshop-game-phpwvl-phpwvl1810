@@ -7,11 +7,20 @@
  */
 class IndexController extends Zend_Controller_Action
 {
+    /**
+     * @var Zend_Session_Namespace
+     */
     protected $_session;
+
+    /**
+     * @var Zend_Log
+     */
+    protected $_logger;
 
     public function init()
     {
         $this->_session = new Zend_Session_Namespace('contact');
+        $this->_logger = $this->getInvokeArg('bootstrap')->getResource('log');
     }
 
     public function indexAction()
@@ -26,7 +35,7 @@ class IndexController extends Zend_Controller_Action
             'action' => $this->view->url([
                 'module' => 'default',
                 'controller' => 'index',
-                'action' => 'submit',
+                'action' => 'contact',
             ], null, true),
         ]);
 
@@ -37,52 +46,56 @@ class IndexController extends Zend_Controller_Action
             $form->getElement('email')->setValue($account->getEmail());
         }
 
-        if (isset($this->_session->contactForm)) {
-            $form = unserialize($this->_session->contactForm);
-            unset($this->_session->contactForm);
+        if ($this->getRequest()->isPost()) {
+
+            if ($form->isValid($this->getRequest()->getPost())) {
+
+                try {
+                    $this->sendMail(
+                        $form->getElement('name')->getValue(),
+                        $form->getElement('email')->getValue(),
+                        $form->getElement('comment')->getValue()
+                    );
+                } catch (Zend_Mail_Exception $exception) {
+                    $this->_logger->crit('Cannot send e-mail: ' . $exception->getMessage());
+                    $this->_logger->debug($exception->getTraceAsString());
+                    return $this->_helper->redirector('failure', 'index', 'default');
+                }
+
+                return $this->_helper->redirector('success', 'index', 'default');
+            }
         }
 
         $this->view->contactForm = $form;
     }
 
-    public function submitAction()
+    private function sendMail($name, $email, $comment)
     {
-        if (! $this->getRequest()->isPost()) {
-            return $this->_helper->redirector('contact', 'index', 'default');
-        }
-        $form = new Application_Form_Contact([
-            'method' => 'POST',
-            'action' => $this->view->url([
-                'module' => 'default',
-                'controller' => 'index',
-                'action' => 'submit',
-            ], null, true),
-        ]);
-        if (! $form->isValid($this->getRequest()->getPost())) {
-            $this->_session->contactForm = serialize($form);
-            return $this->_helper->redirector('contact', 'index', 'default');
-        }
+        $this->_logger->info(sprintf('Sending out new e-mail from "%s" <%s>', $name, $email));
 
         $html = file_get_contents(APPLICATION_PATH . "/templates/contact.html");
         $text = file_get_contents(APPLICATION_PATH . "/templates/contact.txt");
 
-        $html = str_replace('{{MSG}}', $form->getElement('comment')->getValue(), $html);
-        $text = str_replace('{{MSG}}', $form->getElement('comment')->getValue(), $text);
+        $html = str_replace('{{MSG}}', nl2br($comment), $html);
+        $text = str_replace('{{MSG}}', $comment, $text);
 
         // send message
         $mail = new Zend_Mail();
-        $mail->setFrom($form->getElement('email')->getValue(), $form->getElement('name')->getValue());
+        $mail->setFrom($email, $name);
         $mail->addTo('info@in2it.be');
         $mail->setSubject('Contact request from TheiaLive');
         $mail->setBodyHtml($html);
         $mail->setBodyText($text);
         $mail->send();
-
-        return $this->_helper->redirector('success', 'index', 'default');
     }
 
     public function successAction()
     {
         // action body
+    }
+
+    public function failureAction()
+    {
+        $this->getResponse()->setHttpResponseCode(400);
     }
 }
