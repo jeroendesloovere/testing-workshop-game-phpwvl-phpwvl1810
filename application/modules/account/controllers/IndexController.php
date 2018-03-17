@@ -7,6 +7,7 @@
  */
 class Account_IndexController extends Zend_Controller_Action
 {
+    const MAX_FAILED_LOGINS = 5;
     /**
      * @var Zend_Session_Namespace
      */
@@ -166,13 +167,41 @@ class Account_IndexController extends Zend_Controller_Action
             'action' => $this->view->url([
                 'module' => 'account',
                 'controller' => 'index',
-                'action' => 'authenticate',
+                'action' => 'login',
             ], null, true),
         ]);
 
-        if (isset($this->_session->login)) {
-            $form = unserialize($this->_session->login);
-            unset($this->_session->login);
+        if ($this->getRequest()->isPost()) {
+
+            if ($form->isValid($this->getRequest()->getPost())) {
+
+                $result = $this->validatePassword($form);
+
+                if (!isset ($this->_session->login_count)) {
+                    $this->_session->login_count = 0;
+                }
+                $this->_session->login_count++;
+
+                $emailAddress = $form->getElement('email')->getValue();
+
+                if (true === $result) {
+                    $this->_logger->info('Successful login for account ' . $emailAddress);
+                    unset ($this->_session->login_count);
+                    return $this->_helper->redirector('list', 'index', 'project');
+                } elseif (self::MAX_FAILED_LOGINS < $this->_session->login_count) {
+                    $this->_logger->warn(sprintf(
+                        'Session %s has been trying to login for account %s %d times',
+                        session_id(),
+                        $emailAddress,
+                        $this->_session->login_count
+                    ));
+                    return $this->_helper->redirector('invalid-request', 'index', 'account');
+
+                }
+                $this->_logger->warn('Wrong password for ' . $emailAddress);
+                $this->_logger->info('Unsuccessful password tries: ' . $this->_session->login_count);
+                $form->getElement('email')->addError('Given username and/or password is invalid');
+            }
         }
 
         $this->view->assign([
@@ -180,24 +209,14 @@ class Account_IndexController extends Zend_Controller_Action
         ]);
     }
 
-    public function authenticateAction()
+    /**
+     * Validating a given password for given account
+     *
+     * @param Zend_Form $form
+     * @return bool
+     */
+    private function validatePassword(Zend_Form $form)
     {
-        if (! $this->getRequest()->isPost()) {
-            return $this->_helper->redirector('login', 'index', 'account');
-        }
-        $form = new Account_Form_Login([
-            'method' => 'post',
-            'action' => $this->view->url([
-                'module' => 'account',
-                'controller' => 'index',
-                'action' => 'authenticate',
-            ], null, true),
-        ]);
-        if (! $form->isValid($this->getRequest()->getPost())) {
-            $this->_session->login = serialize($form);
-            return $this->_helper->redirector('login', 'index', 'account');
-        }
-
         $bootstrap = $this->getInvokeArg('bootstrap');
         $bootstrap->bootstrap('db');
         $dbAdapter = $bootstrap->getResource('db');
@@ -205,23 +224,23 @@ class Account_IndexController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
         $authAdapter->setTableName('account')
-                    ->setIdentityColumn('email')
-                    ->setCredentialColumn('password')
-                    ->setCredentialTreatment('? AND `active` = 1');
+            ->setIdentityColumn('email')
+            ->setCredentialColumn('password')
+            ->setCredentialTreatment('? AND `active` = 1');
 
         $authAdapter->setIdentity($form->getValue('email'));
         $authAdapter->setCredential(Account_Model_Account::generatePasswordHash($form->getValue('password')));
 
         $result = $auth->authenticate($authAdapter);
-        if (! $result->isValid()) {
-            $form->getElement('email')->addError('Invalid username and/or password provided');
-            $this->_session->login = serialize($form);
-            return $this->_helper->redirector('login', 'index', 'account');
+
+        $valid = $result->isValid();
+        if ($valid) {
+            $account = new Account_Model_Account($authAdapter->getResultRowObject());
+            $storage = $auth->getStorage();
+            $storage->write(serialize($account));
         }
-        $account = new Account_Model_Account($authAdapter->getResultRowObject());
-        $storage = $auth->getStorage();
-        $storage->write(serialize($account));
-        return $this->_helper->redirector('list', 'index', 'project');
+
+        return $valid;
     }
 
     public function forgotPasswordAction()
