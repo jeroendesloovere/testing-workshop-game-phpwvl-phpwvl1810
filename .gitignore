@@ -6,3 +6,6 @@
 .puppet/
 /vendor/
 *.phar
+/public/memcache
+/public/phpmemcache*
+Vagrantfile

@@ -7,6 +7,7 @@
  */
 class Account_IndexController extends Zend_Controller_Action
 {
+    const MAX_FAILED_LOGINS = 5;
     /**
      * @var Zend_Session_Namespace
      */
@@ -20,8 +21,7 @@ class Account_IndexController extends Zend_Controller_Action
     public function init()
     {
         $this->_session = new Zend_Session_Namespace('Account');
-        $this->_logger = $this->getInvokeArg('bootstrap')
-            ->getResource('log');
+        $this->_logger = $this->getInvokeArg('bootstrap')->getResource('log');
     }
 
     public function indexAction()
@@ -36,12 +36,27 @@ class Account_IndexController extends Zend_Controller_Action
             'action' => $this->view->url([
                 'module' => 'account',
                 'controller' => 'index',
-                'action' => 'register',
+                'action' => 'signup',
             ], null, true),
         ]);
-        if (isset($this->_session->register)) {
-            $form = unserialize($this->_session->register);
-            unset($this->_session->register);
+
+        if ($this->getRequest()->isPost()) {
+
+            if ($form->isValid($this->getRequest()->getPost())) {
+
+                $account = new Account_Model_Account($form->getValues());
+                $accountSaved = $this->storeAccount($account);
+
+                if ($accountSaved) {
+                    $this->sendActivationLink($account);
+                    $this->_session->name = $account->getFirstName();
+                    return $this->_helper->redirector('registration-success', 'index', 'account');
+                } else {
+                    $form->getElement('email')->addError('E-mail address is already registered');
+                }
+
+            }
+
         }
 
         $this->view->assign([
@@ -49,47 +64,31 @@ class Account_IndexController extends Zend_Controller_Action
         ]);
     }
 
-    public function registerAction()
+    /**
+     * Save an account in the backend storage
+     *
+     * @param Account_Model_Account $account
+     * @return bool
+     */
+    private function storeAccount(Account_Model_Account $account)
     {
-        if (! $this->getRequest()->isPost()) {
-            return $this->_helper->redirector('signup', 'index', 'account');
-        }
-        $form = new Account_Form_Register([
-            'method' => 'post',
-            'action' => $this->view->url([
-                'module' => 'account',
-                'controller' => 'index',
-                'action' => 'register',
-            ], null, true),
-        ]);
+        $account->setPassword(Account_Model_Account::generatePasswordHash($account->getPassword()));
+        $account->setToken(Account_Model_Account::generateToken());
 
-        if (! $form->isValid($this->getRequest()->getPost())) {
-            $this->_logger->warn('Registration data invalid');
-            $this->_logger->debug('Errors: ' . var_export($form->getErrors(), true));
-            $formData = serialize($form);
-            $this->_logger->info('Storing ' . strlen($formData) . ' bytes of data into sessions');
-            $this->_session->register = $formData;
-            $this->_logger->info('Redirecting back to signup page');
-            return $this->_helper->redirector('signup', 'index', 'account');
-        }
-        $this->_logger->info('New registration from ' . $form->getElement('email')->getValue());
-
+        $accountMapper = new Account_Model_AccountMapper();
         try {
-            $account = new Account_Model_Account($form->getValues());
-            $account->setPassword(Account_Model_Account::generatePasswordHash($account->getPassword()));
-            $account->setToken(Account_Model_Account::generateToken());
-
-            $accountMapper = new Account_Model_AccountMapper();
             $accountMapper->save($account);
-            $this->_logger->info('Saved new account into database');
-        } catch (Exception $exception) {
-            $this->_logger->warn($exception->getMessage());
+            $this->_logger->info('Successfully saved new registration for ' . $account->getEmail());
+        } catch (Zend_Db_Exception $exception) {
+            $this->_logger->crit('Cannot save account in DB: ' . $exception->getMessage());
             $this->_logger->debug($exception->getTraceAsString());
-            $form->getElement('email')->addErrorMessage('Email was already registered');
-            $this->_session->register = serialize($form);
-            return $this->_helper->redirector('signup', 'index', 'account');
+            return false;
         }
+        return true;
+    }
 
+    private function sendActivationLink(Account_Model_Account $account)
+    {
         $name = sprintf('%s %s', $account->getFirstName(), $account->getLastName());
         $link = sprintf(
             'https://%s/%s?token=%s&email=%s',
@@ -122,9 +121,6 @@ class Account_IndexController extends Zend_Controller_Action
             $this->_logger->crit('Cannot sent e-mail to ' . $account->getEmail() . ': ' . $exception->getMessage());
             $this->_logger->debug($exception->getTraceAsString());
         }
-        $this->_session->name = $name;
-        return $this->_helper->redirector('registration-success', 'index', 'account');
-        // action body
     }
 
     public function registrationSuccessAction()
@@ -171,13 +167,41 @@ class Account_IndexController extends Zend_Controller_Action
             'action' => $this->view->url([
                 'module' => 'account',
                 'controller' => 'index',
-                'action' => 'authenticate',
+                'action' => 'login',
             ], null, true),
         ]);
 
-        if (isset($this->_session->login)) {
-            $form = unserialize($this->_session->login);
-            unset($this->_session->login);
+        if ($this->getRequest()->isPost()) {
+
+            if ($form->isValid($this->getRequest()->getPost())) {
+
+                $result = $this->validatePassword($form);
+
+                if (!isset ($this->_session->login_count)) {
+                    $this->_session->login_count = 0;
+                }
+                $this->_session->login_count++;
+
+                $emailAddress = $form->getElement('email')->getValue();
+
+                if (true === $result) {
+                    $this->_logger->info('Successful login for account ' . $emailAddress);
+                    unset ($this->_session->login_count);
+                    return $this->_helper->redirector('list', 'index', 'project');
+                } elseif (self::MAX_FAILED_LOGINS < $this->_session->login_count) {
+                    $this->_logger->warn(sprintf(
+                        'Session %s has been trying to login for account %s %d times',
+                        session_id(),
+                        $emailAddress,
+                        $this->_session->login_count
+                    ));
+                    return $this->_helper->redirector('invalid-request', 'index', 'account');
+
+                }
+                $this->_logger->warn('Wrong password for ' . $emailAddress);
+                $this->_logger->info('Unsuccessful password tries: ' . $this->_session->login_count);
+                $form->getElement('email')->addError('Given username and/or password is invalid');
+            }
         }
 
         $this->view->assign([
@@ -185,24 +209,14 @@ class Account_IndexController extends Zend_Controller_Action
         ]);
     }
 
-    public function authenticateAction()
+    /**
+     * Validating a given password for given account
+     *
+     * @param Zend_Form $form
+     * @return bool
+     */
+    private function validatePassword(Zend_Form $form)
     {
-        if (! $this->getRequest()->isPost()) {
-            return $this->_helper->redirector('login', 'index', 'account');
-        }
-        $form = new Account_Form_Login([
-            'method' => 'post',
-            'action' => $this->view->url([
-                'module' => 'account',
-                'controller' => 'index',
-                'action' => 'authenticate',
-            ], null, true),
-        ]);
-        if (! $form->isValid($this->getRequest()->getPost())) {
-            $this->_session->login = serialize($form);
-            return $this->_helper->redirector('login', 'index', 'account');
-        }
-
         $bootstrap = $this->getInvokeArg('bootstrap');
         $bootstrap->bootstrap('db');
         $dbAdapter = $bootstrap->getResource('db');
@@ -210,23 +224,23 @@ class Account_IndexController extends Zend_Controller_Action
         $auth = Zend_Auth::getInstance();
         $authAdapter = new Zend_Auth_Adapter_DbTable($dbAdapter);
         $authAdapter->setTableName('account')
-                    ->setIdentityColumn('email')
-                    ->setCredentialColumn('password')
-                    ->setCredentialTreatment('? AND `active` = 1');
+            ->setIdentityColumn('email')
+            ->setCredentialColumn('password')
+            ->setCredentialTreatment('? AND `active` = 1');
 
         $authAdapter->setIdentity($form->getValue('email'));
         $authAdapter->setCredential(Account_Model_Account::generatePasswordHash($form->getValue('password')));
 
         $result = $auth->authenticate($authAdapter);
-        if (! $result->isValid()) {
-            $form->getElement('email')->addError('Invalid username and/or password provided');
-            $this->_session->login = serialize($form);
-            return $this->_helper->redirector('login', 'index', 'account');
+
+        $valid = $result->isValid();
+        if ($valid) {
+            $account = new Account_Model_Account($authAdapter->getResultRowObject());
+            $storage = $auth->getStorage();
+            $storage->write(serialize($account));
         }
-        $account = new Account_Model_Account($authAdapter->getResultRowObject());
-        $storage = $auth->getStorage();
-        $storage->write(serialize($account));
-        return $this->_helper->redirector('list', 'index', 'project');
+
+        return $valid;
     }
 
     public function forgotPasswordAction()

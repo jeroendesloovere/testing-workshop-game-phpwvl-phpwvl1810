@@ -1,4 +1,13 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>index</b> and script/action name <b>invalidRequest</b></p>
-</div>
+<?php $this->headTitle($this->translate('Unusual activity detected')) ?>
+
+<h1><?php echo $this->translate('Unusual activity detected') ?></h1>
+
+<p>We have noticed you had problems accessing your account. To protect your account and the account of others
+    we have informed our support team about your issues. They will be in touch with you to see if they can help
+    you solve this problem.</p>
+
+<p>For support, please <a href="<?php echo $this->url([
+        'module' => 'default',
+        'controller' => 'index',
+        'action' => 'contact',
+    ], null, true) ?>">contact us</a></p>

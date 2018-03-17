@@ -15,6 +15,8 @@ defined('DB_NAME') ||
 /**
  * Session settings
  */
+defined('SESS_SAVE_HANDLER') ||
+    define('SESS_SAVE_HANDLER', getenv('SESS_SAVE_HANDLER') ? getenv('SESS_SAVE_HANDLER') : ini_get('session.save_handler'));
 defined('SESS_SAVE_PATH') ||
     define('SESS_SAVE_PATH', getenv('SESS_SAVE_PATH') ? getenv('SESS_SAVE_PATH') : ini_get('session.save_path'));
 
