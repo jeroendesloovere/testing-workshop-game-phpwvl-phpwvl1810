@@ -13,5 +13,3 @@ USER phpunit
 VOLUME /home/phpunit
 
 WORKDIR /home/phpunit
-
-CMD ["/home/phpunit/vendor/bin/phpunit"]

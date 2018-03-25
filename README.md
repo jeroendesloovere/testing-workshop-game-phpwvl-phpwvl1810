@@ -25,6 +25,17 @@ All necessary instructions to get a copy of the source code will be given during
 - PHP 5.6 (with XDebug 2.5.5)
 - Optionally Docker (if you don’t have PHP 5.6)
 
+### Testing
+
+We are focussing on four types of tests:
+
+- Accessibilty Testing: Testing the usage of the application
+- Resilience Testing: Testing the resiliency of the application
+- Security Testing: Testing the security of the application
+- Quality Assurance: Testing the quality of the application
+
+See [TESTING.md](TESTING.md) for details and instructions how to run testing tools.
+
 ## License, terms and conditions
 
 ### Terms and conditions
