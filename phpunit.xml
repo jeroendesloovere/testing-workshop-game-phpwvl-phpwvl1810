@@ -16,10 +16,10 @@
         </testsuite>
 
         <!-- Automated acceptance tests -->
-        <!--testsuite name="TheiaLive Selenium Tests">
+        <testsuite name="TheiaLive Selenium Tests">
             <directory suffix="php">tests</directory>
             <exclude>tests/application</exclude>
-        </testsuite-->
+        </testsuite>
 
     </testsuites>
 
